@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Join us for the wedding celebration of Eda and Ezher on August 3, 2026." />
+  <title>Eda & Ezher | Wedding Invitation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Great+Vibes&family=Manrope:wght@400;500;600;700&family=Ms+Madi&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <a href="#top" class="logo"><span class="calli-cap">E</span> <span class="calli-cap">&</span> <span
+        class="calli-cap">E</span></a>
+    <div class="lang-toggle">
+      <label for="langSelect" class="sr-only">Language</label>
+      <select id="langSelect" class="lang-select" aria-label="Language switcher">
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+        <option value="al">AL</option>
+      </select>
+    </div>
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="menu-toggle-icon" aria-hidden="true"></span>
+      <span class="menu-toggle-text" data-i18n="menu">Menu</span>
+    </button>
+    <nav class="site-nav" id="nav">
+      <a href="#schedule" data-i18n="nav_schedule">Schedule</a>
+      <a href="#venues" data-i18n="nav_venues">Venues</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-content reveal">
+        <p class="eyebrow" data-i18n="hero_eyebrow">Wedding Invitation</p>
+        <h1>Eda <span>&</span> Ezher</h1>
+        <p class="hero-text" data-i18n="hero_text"></p>
+
+        <div class="countdown-wrap" aria-label="Wedding countdown">
+          <div class="countdown">
+            <div class="flip-unit">
+              <div class="flip-digits" id="dayBox"></div>
+              <!-- <span class="flip-label" data-i18n="date_day">Day</span> -->
+            </div>
+            <div class="flip-unit">
+              <div class="flip-digits" id="monthBox"></div>
+              <!-- <span class="flip-label" data-i18n="date_month">Month</span> -->
+            </div>
+            <div class="flip-unit">
+              <div class="flip-digits" id="yearBox"></div>
+              <!-- <span class="flip-label" data-i18n="date_year">Year</span> -->
+            </div>
+          </div>
+
+        </div>
+        <p class="hero-subtitle" data-i18n="hero_subtitle">Kalkandelen</p>
+        <div class="hero-actions">
+          <a href="#schedule" class="btn btn-solid" data-i18n="event_flow">Event Flow</a>
+          <button class="btn btn-ghost" id="addToCalendar" type="button" data-i18n="add_to_calendar">Add to Calendar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="schedule">
+      <div class="section-heading reveal">
+        <h4 class="eyebrow" data-i18n="event_flow">Event Flow</h4>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-block">
+            <span class="time">15:00</span>
+            <div>
+              <h4 data-i18n="s1_title">Guest Welcome</h4>
+              <p data-i18n="s1_desc">Welcome drinks and gathering in the garden.</p>
+            </div>
+          </div>
+          <span class="timeline-icon" aria-hidden="true"></span>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-block">
+            <span class="time">15:30</span>
+            <div>
+              <h4 data-i18n="s2_title">Ceremony</h4>
+              <p data-i18n="s2_desc">Wedding vows and ring exchange.</p>
+            </div>
+          </div>
+          <span class="timeline-icon" aria-hidden="true"></span>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-block">
+            <span class="time">17:00</span>
+            <div>
+              <h4 data-i18n="s3_title">Dinner</h4>
+              <p data-i18n="s3_desc">Celebration dinner with family and friends.</p>
+            </div>
+          </div>
+          <span class="timeline-icon" aria-hidden="true"></span>
+        </article>
+        <article class="timeline-item reveal">
+          <div class="timeline-block">
+            <span class="time">19:00</span>
+            <div>
+              <h4 data-i18n="s4_title">First Dance & Party</h4>
+              <p data-i18n="s4_desc">Music, dancing, and unforgettable moments.</p>
+            </div>
+          </div>
+          <span class="timeline-icon" aria-hidden="true"></span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="venues">
+      <div class="section-heading reveal">
+        <h3 class="eyebrow" data-i18n="venues_eyebrow">Venue Addresses</h3>
+      </div>
+      <div class="venue-grid">
+        <article class="venue-card reveal">
+          <div class="venue-top">
+            <p class="venue-type" data-i18n="venue_type_ceremony">Ceremony</p>
+            <h4 data-i18n="v1_title">Ceremony Garden</h4>
+            <p class="venue-desc" data-i18n="venue_desc_1">A graceful garden setting for our vows and first moments.</p>
+          </div>
+          <div class="venue-divider" aria-hidden="true"></div>
+          <div class="venue-details">
+            <p><span data-i18n="venue_label_time">Time</span><strong>15:30</strong></p>
+            <p><span data-i18n="venue_label_location">Location</span><strong>Bosphorus Garden</strong></p>
+            <p><span data-i18n="venue_label_address">Address</span><strong>Bebek Caddesi No:123, Besiktas, Istanbul</strong></p>
+          </div>
+          <div class="venue-actions">
+            <a class="venue-link" target="_blank" rel="noopener noreferrer"
+              href="https://maps.google.com/?q=41.0786,29.0433" data-i18n="open_maps">Open in Maps</a>
+          </div>
+          <div class="google-map" id="map1" aria-label="Ceremony Garden Map"></div>
+        </article>
+
+        <article class="venue-card reveal">
+          <div class="venue-top">
+            <p class="venue-type" data-i18n="venue_type_reception">Reception</p>
+            <h4 data-i18n="v2_title">Reception Hall</h4>
+            <p class="venue-desc" data-i18n="venue_desc_2">An elegant ballroom dinner and celebration with our loved ones.</p>
+          </div>
+          <div class="venue-divider" aria-hidden="true"></div>
+          <div class="venue-details">
+            <p><span data-i18n="venue_label_time">Time</span><strong>17:00</strong></p>
+            <p><span data-i18n="venue_label_location">Location</span><strong>Grand Ballroom</strong></p>
+            <p><span data-i18n="venue_label_address">Address</span><strong>Ciragan Caddesi No:32, Besiktas, Istanbul</strong></p>
+          </div>
+          <div class="venue-actions">
+            <a class="venue-link" target="_blank" rel="noopener noreferrer"
+              href="https://maps.google.com/?q=41.0437,29.0152" data-i18n="open_maps">Open in Maps</a>
+          </div>
+          <div class="google-map" id="map2" aria-label="Reception Hall Map"></div>
+        </article>
+
+        <article class="venue-card reveal">
+          <div class="venue-top">
+            <p class="venue-type" data-i18n="venue_type_afterparty">After Party</p>
+            <h4 data-i18n="v3_title">After Party Lounge</h4>
+            <p class="venue-desc" data-i18n="venue_desc_3">A rooftop evening of music, laughter, and dancing under the lights.</p>
+          </div>
+          <div class="venue-divider" aria-hidden="true"></div>
+          <div class="venue-details">
+            <p><span data-i18n="venue_label_time">Time</span><strong>19:00</strong></p>
+            <p><span data-i18n="venue_label_location">Location</span><strong>Skyline Rooftop</strong></p>
+            <p><span data-i18n="venue_label_address">Address</span><strong>Taskisla Caddesi No:1, Sisli, Istanbul</strong></p>
+          </div>
+          <div class="venue-actions">
+            <a class="venue-link" target="_blank" rel="noopener noreferrer"
+              href="https://maps.google.com/?q=41.0474,28.9872" data-i18n="open_maps">Open in Maps</a>
+          </div>
+          <div class="google-map" id="map3" aria-label="After Party Lounge Map"></div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="footer_text">With love, Eda & Ezher</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+
+</html>
