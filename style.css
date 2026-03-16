@@ -311,13 +311,11 @@ body.intro-complete .site-footer {
   position: absolute;
   inset: 0;
   border-radius: 47% 53% 51% 49% / 45% 50% 54% 51%;
-  clip-path: url(#waxSealClip);
   opacity: 0.11;
   background:
     radial-gradient(circle at 31% 32%, rgba(255, 245, 216, 0.03) 0 1.2%, rgba(255, 245, 216, 0) 4.5%),
     radial-gradient(circle at 59% 57%, rgba(29, 31, 10, 0.035) 0 1.4%, rgba(29, 31, 10, 0) 4%),
-    radial-gradient(circle at 66% 39%, rgba(255, 247, 224, 0.018) 0 1.1%, rgba(255, 247, 224, 0) 3.8%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.9'/%3E%3C/svg%3E");
+    radial-gradient(circle at 66% 39%, rgba(255, 247, 224, 0.018) 0 1.1%, rgba(255, 247, 224, 0) 3.8%);
   background-size: auto, auto, auto, 220px 220px;
   mix-blend-mode: multiply;
 }
