@@ -176,6 +176,34 @@ body.intro-complete .site-footer {
   opacity: 0.9;
 }
 
+.seal-shadow::before,
+.seal-shadow::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 244, 204, 0.08) 0%, rgba(255, 244, 204, 0.02) 18%, rgba(23, 24, 8, 0.28) 54%, rgba(23, 24, 8, 0) 100%);
+  filter: blur(10px);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.seal-shadow::before {
+  width: 12%;
+  height: 12%;
+  right: 10%;
+  bottom: -3%;
+}
+
+.seal-shadow::after {
+  width: 7%;
+  height: 7%;
+  right: 2%;
+  bottom: 6%;
+  filter: blur(8px);
+  opacity: 0.55;
+}
+
 .seal-disc {
   position: relative;
   display: block;
@@ -204,9 +232,10 @@ body.intro-complete .site-footer {
     0 16px 26px rgba(22, 23, 8, 0.08),
     -14px -12px 26px rgba(246, 238, 205, 0.025),
     inset 0.4px 0.7px 0 rgba(255, 245, 206, 0.1),
-    inset -15px -17px 25px rgba(17, 18, 5, 0.38),
-    inset 10px 11px 16px rgba(255, 239, 179, 0.04),
-    inset 21px -4px 24px rgba(91, 97, 43, 0.14),
+    inset -18px -20px 28px rgba(17, 18, 5, 0.42),
+    inset 10px 11px 16px rgba(255, 239, 179, 0.035),
+    inset 22px -6px 28px rgba(91, 97, 43, 0.16),
+    inset 0 -18px 24px rgba(18, 19, 6, 0.13),
     inset 0 0 0 999px rgba(0, 0, 0, 0);
   overflow: hidden;
 }
@@ -240,27 +269,49 @@ body.intro-complete .site-footer {
   inset: 0;
   clip-path: url(#waxSealClip);
   box-shadow:
-    inset 0 0 0 0.6px rgba(255, 243, 198, 0.05),
-    inset 9px 12px 16px rgba(255, 242, 196, 0.04),
-    inset -12px -14px 18px rgba(18, 19, 6, 0.24),
-    inset -4px 0 0 rgba(18, 19, 6, 0.13),
-    inset 0 0 0 39px rgba(28, 30, 10, 0.045),
-    inset 0 0 0 41px rgba(248, 241, 214, 0.032),
-    inset 0 0 0 53px rgba(255, 244, 201, 0.01);
+    inset 0 0 0 0.6px rgba(255, 243, 198, 0.04),
+    inset 10px 12px 16px rgba(255, 242, 196, 0.02),
+    inset -15px -16px 22px rgba(18, 19, 6, 0.3),
+    inset -5px -18px 20px rgba(18, 19, 6, 0.14),
+    inset 0 0 0 32px rgba(28, 30, 10, 0.02),
+    inset 0 0 0 35px rgba(248, 241, 214, 0.01),
+    inset 0 -30px 38px rgba(17, 18, 5, 0.08);
   pointer-events: none;
 }
 
 .seal-disc .seal-ring.outer::before {
   content: "";
   position: absolute;
-  inset: -5% -4% auto auto;
-  width: 52%;
-  height: 38%;
+  inset: -2% -1.5%;
   border-radius: 50%;
-  background: radial-gradient(ellipse at 30% 30%, rgba(249, 242, 212, 0.22) 0%, rgba(249, 242, 212, 0.08) 34%, rgba(249, 242, 212, 0) 72%);
-  transform: translate(-44%, -22%) rotate(-18deg);
-  filter: blur(7px);
-  opacity: 0.42;
+  background:
+    conic-gradient(from 198deg at 50% 50%,
+      rgba(255, 250, 229, 0) 0deg,
+      rgba(255, 250, 229, 0) 44deg,
+      rgba(255, 250, 229, 0.18) 60deg,
+      rgba(255, 250, 229, 0.08) 73deg,
+      rgba(255, 250, 229, 0) 88deg,
+      rgba(255, 250, 229, 0) 162deg,
+      rgba(255, 250, 229, 0.1) 180deg,
+      rgba(255, 250, 229, 0.04) 192deg,
+      rgba(255, 250, 229, 0) 208deg,
+      rgba(255, 250, 229, 0) 360deg);
+  filter: blur(2.2px);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.seal-disc .seal-ring.outer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 16px 24px rgba(19, 20, 6, 0.12),
+    inset 0 -6px 12px rgba(19, 20, 6, 0.22),
+    inset -13px -15px 21px rgba(19, 20, 6, 0.18),
+    inset 11px 10px 15px rgba(255, 244, 201, 0.02),
+    inset 0 -18px 18px rgba(19, 20, 6, 0.08);
   pointer-events: none;
 }
 
@@ -274,23 +325,26 @@ body.intro-complete .site-footer {
 }
 
 .seal-disc>.seal-ring.outer {
-  inset: 10.5% 11.5%;
+  inset: 8.4% 9.1% 9.8% 8.7%;
+  border-radius: 49% 51% 53% 47% / 51% 48% 55% 46%;
   box-shadow:
-    inset 0 9px 100px rgba(28, 30, 10, 0.28),
-    inset 0 -1px 5px rgba(28, 30, 10, 0.24),
-    inset 9px 8px 14px rgba(28, 30, 10, 0.14),
-    0 1px 1px rgba(27, 29, 10, 0.17);
-  opacity: 0.8;
+    inset 0 22px 36px rgba(19, 20, 6, 0.12),
+    inset 0 -8px 18px rgba(19, 20, 6, 0.22),
+    inset -19px -22px 30px rgba(19, 20, 6, 0.2),
+    inset 13px 12px 20px rgba(255, 244, 201, 0.022),
+    inset 0 -28px 30px rgba(19, 20, 6, 0.12);
+  opacity: 0.96;
 }
 
 .seal-disc>.seal-ring.inner {
-  inset: 14% 15%;
+  inset: 12.9% 13.8% 15.1% 13.4%;
+  border-radius: 50% 50% 49% 51% / 50% 49% 52% 48%;
   box-shadow:
-    inset 0 1px 10px rgba(27, 29, 10, 0.02),
-    inset -7px -7px 11px rgba(27, 29, 10, 0.1),
-    inset 6px 6px 100px rgba(27, 29, 10, 0.5),
-    inset 0 -2px 40px rgba(27, 29, 10, 0.42);
-  opacity: 0.62;
+    inset 0 12px 18px rgba(20, 21, 7, 0.08),
+    inset 0 -5px 12px rgba(20, 21, 7, 0.18),
+    inset -9px -10px 15px rgba(20, 21, 7, 0.14),
+    inset 8px 7px 12px rgba(255, 245, 204, 0.014);
+  opacity: 0.7;
 }
 
 .seal-highlight {
