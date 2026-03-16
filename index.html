@@ -18,7 +18,49 @@
   <script src="script.js" defer></script>
 </head>
 
-<body>
+<body class="intro-active">
+  <div class="intro-overlay" id="introOverlay" aria-hidden="true">
+    <svg class="seal-svg-defs" aria-hidden="true" focusable="false" width="0" height="0">
+      <defs>
+        <clipPath id="waxSealClip" clipPathUnits="objectBoundingBox">
+          <path
+            d="M0.5,0.028 C0.575,0.032 0.657,0.055 0.727,0.106 C0.792,0.152 0.862,0.175 0.909,0.246 C0.955,0.314 0.972,0.399 0.98,0.484 C0.988,0.567 0.973,0.646 0.947,0.723 C0.919,0.806 0.854,0.86 0.796,0.917 C0.733,0.977 0.654,0.995 0.57,0.998 C0.494,1 0.421,0.987 0.35,0.966 C0.273,0.943 0.186,0.929 0.131,0.869 C0.073,0.807 0.044,0.727 0.027,0.646 C0.011,0.569 0.014,0.488 0.02,0.41 C0.027,0.324 0.056,0.244 0.107,0.176 C0.162,0.103 0.25,0.08 0.331,0.051 C0.389,0.031 0.439,0.025 0.5,0.028 Z" />
+        </clipPath>
+        <filter id="waxEdgeDistort" x="-10%" y="-10%" width="120%" height="120%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.018 0.015" numOctaves="2" seed="7" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="7.5" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+    <div class="seal-stage" id="sealStage">
+      <div class="paper-noise"></div>
+      <div class="seal-lines" aria-hidden="true">
+        <span class="seal-line line-top-left"></span>
+        <span class="seal-line line-top-right"></span>
+        <span class="seal-line line-bottom-left"></span>
+        <span class="seal-line line-bottom-right"></span>
+      </div>
+      <button class="seal-button" id="sealButton" type="button" aria-label="Open invitation">
+        <span class="seal-shadow" aria-hidden="true"></span>
+        <span class="seal-disc" aria-hidden="true">
+          <span class="seal-ring outer"></span>
+          <span class="seal-ring inner"></span>
+          <span class="seal-highlight"></span>
+          <!-- <span class="seal-texture"></span> -->
+          <span class="seal-monogram">E&amp;E</span>
+        </span>
+        <span class="seal-prompt">Tap to open</span>
+      </button>
+    </div>
+
+    <div class="reveal-stage" id="revealStage" aria-hidden="true">
+      <div class="paper-noise"></div>
+      <div class="reveal-flap top-flap"></div>
+      <div class="reveal-flap left-flap"></div>
+      <div class="reveal-flap right-flap"></div>
+    </div>
+  </div>
+
   <header class="site-header">
     <a href="#top" class="logo"><span class="calli-cap">E</span> <span class="calli-cap">&</span> <span
         class="calli-cap">E</span></a>
@@ -42,7 +84,7 @@
 
   <main id="top">
     <section class="hero section">
-      <div class="hero-content reveal">
+      <div class="hero-content reveal visible">
         <p class="eyebrow" data-i18n="hero_eyebrow">Wedding Invitation</p>
         <h1>Eda <span>&</span> Ezher</h1>
         <p class="hero-text" data-i18n="hero_text"></p>
@@ -67,7 +109,8 @@
         <p class="hero-subtitle" data-i18n="hero_subtitle">Kalkandelen</p>
         <div class="hero-actions">
           <a href="#schedule" class="btn btn-solid" data-i18n="event_flow">Event Flow</a>
-          <button class="btn btn-ghost" id="addToCalendar" type="button" data-i18n="add_to_calendar">Add to Calendar</button>
+          <button class="btn btn-ghost" id="addToCalendar" type="button" data-i18n="add_to_calendar">Add to
+            Calendar</button>
         </div>
       </div>
     </section>
@@ -79,40 +122,40 @@
       <div class="timeline">
         <article class="timeline-item reveal">
           <div class="timeline-block">
-            <span class="time">15:00</span>
+            <span class="time">18:00</span>
             <div>
-              <h4 data-i18n="s1_title">Guest Welcome</h4>
-              <p data-i18n="s1_desc">Welcome drinks and gathering in the garden.</p>
+              <h4 data-i18n="s1_title">Nikah Ceremony</h4>
+              <p data-i18n="s1_desc">Nikah ceremony begins at Restaurant Ajka.</p>
             </div>
           </div>
           <span class="timeline-icon" aria-hidden="true"></span>
         </article>
         <article class="timeline-item reveal">
           <div class="timeline-block">
-            <span class="time">15:30</span>
+            <span class="time">18:15</span>
             <div>
-              <h4 data-i18n="s2_title">Ceremony</h4>
-              <p data-i18n="s2_desc">Wedding vows and ring exchange.</p>
+              <h4 data-i18n="s2_title">Women's Celebration</h4>
+              <p data-i18n="s2_desc">After the nikah, the women's celebration continues at Ajka.</p>
             </div>
           </div>
           <span class="timeline-icon" aria-hidden="true"></span>
         </article>
         <article class="timeline-item reveal">
           <div class="timeline-block">
-            <span class="time">17:00</span>
+            <span class="time">19:30</span>
             <div>
-              <h4 data-i18n="s3_title">Dinner</h4>
-              <p data-i18n="s3_desc">Celebration dinner with family and friends.</p>
+              <h4 data-i18n="s3_title">Men's Gathering</h4>
+              <p data-i18n="s3_desc">The men's side gathers at Restaurant Shaza.</p>
             </div>
           </div>
           <span class="timeline-icon" aria-hidden="true"></span>
         </article>
         <article class="timeline-item reveal">
           <div class="timeline-block">
-            <span class="time">19:00</span>
+            <span class="time">19:30</span>
             <div>
-              <h4 data-i18n="s4_title">First Dance & Party</h4>
-              <p data-i18n="s4_desc">Music, dancing, and unforgettable moments.</p>
+              <h4 data-i18n="s4_title">Wedding Celebration</h4>
+              <p data-i18n="s4_desc">The wedding celebration begins on both sides at that time.</p>
             </div>
           </div>
           <span class="timeline-icon" aria-hidden="true"></span>
@@ -126,62 +169,94 @@
       </div>
       <div class="venue-grid">
         <article class="venue-card reveal">
-          <div class="venue-top">
-            <p class="venue-type" data-i18n="venue_type_ceremony">Ceremony</p>
-            <h4 data-i18n="v1_title">Ceremony Garden</h4>
-            <p class="venue-desc" data-i18n="venue_desc_1">A graceful garden setting for our vows and first moments.</p>
+          <div class="venue-body">
+            <div class="venue-top">
+              <p class="venue-type" data-i18n="venue_type_ceremony">Ceremony</p>
+              <h4 data-i18n="v1_title">Restaurant Ajka</h4>
+              <p class="venue-desc" data-i18n="venue_desc_1">NIkah and the women's wedding ceremony will be held at
+                Restaurant Ajka.
+              </p>
+            </div>
+            <div class="venue-details">
+              <p><span data-i18n="venue_label_time">Time</span><strong>18:00</strong></p>
+              <p><span data-i18n="venue_label_location">Location</span><strong>Restaurant Ajka</strong></p>
+            </div>
           </div>
-          <div class="venue-divider" aria-hidden="true"></div>
-          <div class="venue-details">
-            <p><span data-i18n="venue_label_time">Time</span><strong>15:30</strong></p>
-            <p><span data-i18n="venue_label_location">Location</span><strong>Bosphorus Garden</strong></p>
-            <p><span data-i18n="venue_label_address">Address</span><strong>Bebek Caddesi No:123, Besiktas, Istanbul</strong></p>
+          <div class="venue-map-shell">
+            <div class="google-map" id="map1" aria-label="Restaurant Ajka Map"></div>
           </div>
           <div class="venue-actions">
             <a class="venue-link" target="_blank" rel="noopener noreferrer"
-              href="https://maps.google.com/?q=41.0786,29.0433" data-i18n="open_maps">Open in Maps</a>
+              href="https://maps.app.goo.gl/LdoqzUPMRKHFZHBa7?g_st=ic">
+              <span class="venue-link-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 21s-6-5.4-6-11a6 6 0 1 1 12 0c0 5.6-6 11-6 11Z"></path>
+                  <circle cx="12" cy="10" r="2.6"></circle>
+                </svg>
+              </span>
+              <span data-i18n="open_maps">Open in Maps</span>
+            </a>
           </div>
-          <div class="google-map" id="map1" aria-label="Ceremony Garden Map"></div>
         </article>
 
         <article class="venue-card reveal">
-          <div class="venue-top">
-            <p class="venue-type" data-i18n="venue_type_reception">Reception</p>
-            <h4 data-i18n="v2_title">Reception Hall</h4>
-            <p class="venue-desc" data-i18n="venue_desc_2">An elegant ballroom dinner and celebration with our loved ones.</p>
+          <div class="venue-body">
+            <div class="venue-top">
+              <p class="venue-type" data-i18n="venue_type_reception">Reception</p>
+              <h4 data-i18n="v2_title">Restaurant Shaza</h4>
+              <p class="venue-desc" data-i18n="venue_desc_2">The men's wedding celebration will be held at Restaurant
+                Shaza.</p>
+            </div>
+            <div class="venue-details">
+              <p><span data-i18n="venue_label_time">Time</span><strong>19:30</strong></p>
+              <p><span data-i18n="venue_label_location">Location</span><strong>Restaurant Shaza</strong></p>
+            </div>
           </div>
-          <div class="venue-divider" aria-hidden="true"></div>
-          <div class="venue-details">
-            <p><span data-i18n="venue_label_time">Time</span><strong>17:00</strong></p>
-            <p><span data-i18n="venue_label_location">Location</span><strong>Grand Ballroom</strong></p>
-            <p><span data-i18n="venue_label_address">Address</span><strong>Ciragan Caddesi No:32, Besiktas, Istanbul</strong></p>
-          </div>
-          <div class="venue-actions">
-            <a class="venue-link" target="_blank" rel="noopener noreferrer"
-              href="https://maps.google.com/?q=41.0437,29.0152" data-i18n="open_maps">Open in Maps</a>
-          </div>
-          <div class="google-map" id="map2" aria-label="Reception Hall Map"></div>
-        </article>
-
-        <article class="venue-card reveal">
-          <div class="venue-top">
-            <p class="venue-type" data-i18n="venue_type_afterparty">After Party</p>
-            <h4 data-i18n="v3_title">After Party Lounge</h4>
-            <p class="venue-desc" data-i18n="venue_desc_3">A rooftop evening of music, laughter, and dancing under the lights.</p>
-          </div>
-          <div class="venue-divider" aria-hidden="true"></div>
-          <div class="venue-details">
-            <p><span data-i18n="venue_label_time">Time</span><strong>19:00</strong></p>
-            <p><span data-i18n="venue_label_location">Location</span><strong>Skyline Rooftop</strong></p>
-            <p><span data-i18n="venue_label_address">Address</span><strong>Taskisla Caddesi No:1, Sisli, Istanbul</strong></p>
+          <div class="venue-map-shell">
+            <div class="google-map" id="map2" aria-label="Restaurant Shaza Map"></div>
           </div>
           <div class="venue-actions">
             <a class="venue-link" target="_blank" rel="noopener noreferrer"
-              href="https://maps.google.com/?q=41.0474,28.9872" data-i18n="open_maps">Open in Maps</a>
+              href="https://maps.app.goo.gl/6c2WgZNxNTmnPjyL8?g_st=ic">
+              <span class="venue-link-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M12 21s-6-5.4-6-11a6 6 0 1 1 12 0c0 5.6-6 11-6 11Z"></path>
+                  <circle cx="12" cy="10" r="2.6"></circle>
+                </svg>
+              </span>
+              <span data-i18n="open_maps">Open in Maps</span>
+            </a>
           </div>
-          <div class="google-map" id="map3" aria-label="After Party Lounge Map"></div>
         </article>
 
+
+
+      </div>
+    </section>
+
+    <section class="section" id="share-moments">
+      <div class="section-heading reveal">
+        <h3 class="eyebrow" data-i18n="share_moments_eyebrow">Share Your Moments</h3>
+        <h2>Moments We Will Keep Forever</h2>
+      </div>
+      <div class="moments-form reveal">
+        <div class="moments-copy">
+          <p class="moments-kicker">Private upload</p>
+          <p class="moments-lead">Photos and videos are collected through a private Google Form and are not visible to
+            other guests.</p>
+        </div>
+        <div class="moments-note-list">
+          <p>Upload multiple photos or videos in one go.</p>
+          <p>Your files go directly to our private Google Drive collection.</p>
+          <p>Guests cannot browse, view, or access each other's uploads.</p>
+        </div>
+        <p class="privacy-note" data-i18n="moments_privacy_note">Your photos will be sent privately to us and will not
+          be visible to other guests.</p>
+        <a class="btn btn-solid moments-submit"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScQ4FEGVm2NX4cBxP_mCjOxgkO7e11FZIRPhhU-XipC8BVeKg/viewform?usp=pp_url"
+          target="_blank" rel="noopener noreferrer">
+          Open Private Upload Form
+        </a>
       </div>
     </section>
 
