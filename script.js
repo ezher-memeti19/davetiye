@@ -226,6 +226,13 @@ const introOverlay = document.getElementById("introOverlay");
 const sealStage = document.getElementById("sealStage");
 const revealStage = document.getElementById("revealStage");
 const sealButton = document.getElementById("sealButton");
+const heroTitleEl = document.querySelector(".hero-content h1");
+const heroTextEl = document.querySelector(".hero-text");
+const heroTitleText = (heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
+const HERO_SEQUENCE = {
+  cardDelay: 2.18,
+  titleDelay: 5.15
+};
 
 let currentLang = localStorage.getItem("wedding_lang") || "en";
 const dateCardEls = {
@@ -233,6 +240,70 @@ const dateCardEls = {
   month: document.getElementById("monthBox"),
   year: document.getElementById("yearBox")
 };
+
+function stopHeroTitleWriting() {
+  window.clearTimeout(stopHeroTitleWriting.startTimeoutId);
+  window.clearTimeout(stopHeroTitleWriting.stepTimeoutId);
+}
+
+function createHeroTitleChar(char) {
+  const charEl = document.createElement("span");
+  charEl.className = "hero-name-char";
+
+  if (char === " ") {
+    charEl.classList.add("is-space");
+    charEl.innerHTML = "&nbsp;";
+    return charEl;
+  }
+
+  if (char === "&") {
+    charEl.classList.add("accent");
+  }
+
+  charEl.textContent = char;
+  return charEl;
+}
+
+function renderHeroTitle({ animate = false, delay = 0 } = {}) {
+  if (!heroTitleEl) return;
+
+  stopHeroTitleWriting();
+  heroTitleEl.classList.remove("is-writing");
+  heroTitleEl.setAttribute("aria-label", heroTitleText);
+
+  if (!animate) {
+    heroTitleEl.replaceChildren(...Array.from(heroTitleText, createHeroTitleChar));
+    return;
+  }
+
+  heroTitleEl.replaceChildren();
+  heroTitleEl.classList.add("is-writing");
+  const chars = Array.from(heroTitleText);
+
+  stopHeroTitleWriting.startTimeoutId = window.setTimeout(() => {
+    let index = 0;
+
+    const writeNextCharacter = () => {
+      heroTitleEl.appendChild(createHeroTitleChar(chars[index]));
+      index += 1;
+
+      if (index < chars.length) {
+        const nextDelay = chars[index - 1] === " " ? 140 : chars[index - 1] === "&" ? 340 : 270;
+        stopHeroTitleWriting.stepTimeoutId = window.setTimeout(writeNextCharacter, nextDelay);
+        return;
+      }
+
+      heroTitleEl.classList.remove("is-writing");
+    };
+
+    writeNextCharacter();
+  }, delay);
+}
+
+function renderHeroText(text) {
+  if (!heroTextEl) return;
+  heroTextEl.textContent = text;
+}
 
 function renderDigitCards(container, previous, next) {
   if (!container) return;
@@ -264,6 +335,7 @@ function initIntroOverlay() {
   window.clearTimeout(initIntroOverlay.timeoutId);
   window.clearTimeout(initIntroOverlay.hideSealStageTimeoutId);
   window.clearTimeout(initIntroOverlay.startFlapsTimeoutId);
+  stopHeroTitleWriting();
   introOverlay.hidden = false;
   introOverlay.classList.remove("is-complete", "is-playing", "allow-through");
   sealStage?.classList.remove("is-hidden");
@@ -271,6 +343,8 @@ function initIntroOverlay() {
   revealStage?.setAttribute("aria-hidden", "true");
   document.body.classList.remove("intro-complete");
   document.body.classList.add("intro-active");
+  renderHeroTitle();
+  renderHeroText((translations[currentLang] || translations.en).hero_text);
   void introOverlay.offsetWidth;
 
   let finished = false;
@@ -290,6 +364,8 @@ function initIntroOverlay() {
     opened = true;
     document.body.classList.remove("intro-active");
     document.body.classList.add("intro-complete");
+    renderHeroTitle({ animate: true, delay: HERO_SEQUENCE.titleDelay * 1000 });
+    renderHeroText((translations[currentLang] || translations.en).hero_text);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         introOverlay.classList.add("is-playing");
@@ -367,6 +443,7 @@ function applyLanguage(lang) {
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
+    if (key === "hero_text") return;
     if (dict[key]) el.textContent = dict[key];
   });
 
@@ -379,6 +456,7 @@ function applyLanguage(lang) {
 
   currentLang = lang;
   localStorage.setItem("wedding_lang", lang);
+  renderHeroText(dict.hero_text);
 }
 
 if (langSelect) {
