@@ -1775,13 +1775,13 @@ h1 {
 
 @media (max-width: 720px) {
   .hero {
-    min-height: 82svh;
-    padding-top: 4.25rem;
-    background-position: center 23%;
+    min-height: 94svh;
+    padding-top: 4.9rem;
+    background-position: center 21%;
   }
 
   .hero::before {
-    background-position: center 23%;
+    background-position: center 21%;
     opacity: 0.26;
   }
 
