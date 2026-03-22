@@ -7,6 +7,7 @@ const translations = {
     nav_rsvp: "RSVP",
     hero_eyebrow: "Wedding Invitation",
     hero_subtitle: "Tetovo",
+    hero_date_label: "Wedding Date",
     date_day: "Day",
     date_month: "Month",
     date_year: "Year",
@@ -77,6 +78,7 @@ const translations = {
     nav_rsvp: "RSVP",
     hero_eyebrow: "Düğün Davetiyesi",
     hero_subtitle: "Kalkandelen",
+    hero_date_label: "Düğün Tarihi",
     date_day: "Gün",
     date_month: "Ay",
     date_year: "Yıl",
@@ -147,6 +149,7 @@ const translations = {
     nav_rsvp: "RSVP",
     hero_eyebrow: "Ftese Dasme",
     hero_subtitle: "Tetovë",
+    hero_date_label: "Data e Dasmës",
     date_day: "Dita",
     date_month: "Muaji",
     date_year: "Viti",
@@ -231,7 +234,7 @@ const heroTextEl = document.querySelector(".hero-text");
 const heroTitleText = (heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
 const HERO_SEQUENCE = {
   cardDelay: 2.18,
-  titleDelay: 5.15
+  titleDelay: 2.6
 };
 
 let currentLang = localStorage.getItem("wedding_lang") || "en";
@@ -288,7 +291,7 @@ function renderHeroTitle({ animate = false, delay = 0 } = {}) {
       index += 1;
 
       if (index < chars.length) {
-        const nextDelay = chars[index - 1] === " " ? 140 : chars[index - 1] === "&" ? 340 : 270;
+        const nextDelay = chars[index - 1] === " " ? 128 : chars[index - 1] === "&" ? 270 : 210;
         stopHeroTitleWriting.stepTimeoutId = window.setTimeout(writeNextCharacter, nextDelay);
         return;
       }

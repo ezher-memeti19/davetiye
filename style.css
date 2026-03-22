@@ -473,13 +473,9 @@ body.intro-active .hero-content>* {
 }
 
 .hero-content {
-  --hero-card-delay: 4.18s;
-  --hero-eyebrow-delay: 4.82s;
-  --hero-title-delay: 5.15s;
-  --hero-copy-delay: 7.35s;
-  --hero-countdown-delay: 10.2s;
-  --hero-subtitle-delay: 10.6s;
-  --hero-actions-delay: 11.05s;
+  --hero-card-delay: 0s;
+  --hero-title-delay: 2.6s;
+  --hero-after-title-delay: 2.6s;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -506,7 +502,7 @@ body.intro-complete .hero-content {
   visibility: visible;
   animation:
     waterBlob 15s ease-in-out infinite,
-    heroCardReveal 1.9s cubic-bezier(0.2, 0.9, 0.22, 1) var(--hero-card-delay) forwards;
+    heroCardReveal 2.2s cubic-bezier(0.2, 0.9, 0.22, 1) var(--hero-card-delay) forwards;
 }
 
 .hero-content>* {
@@ -519,7 +515,7 @@ body.intro-complete .hero-content>* {
 }
 
 body.intro-complete .hero-content .eyebrow {
-  animation-delay: var(--hero-eyebrow-delay);
+  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
 body.intro-complete .hero-content h1 {
@@ -527,19 +523,19 @@ body.intro-complete .hero-content h1 {
 }
 
 body.intro-complete .hero-content .hero-text {
-  animation: heroCopyLinear 2.8s linear var(--hero-copy-delay) forwards;
+  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
 body.intro-complete .hero-content .countdown-wrap {
-  animation: heroCopyLinear 1.5s linear var(--hero-countdown-delay) forwards;
+  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
 body.intro-complete .hero-content .hero-subtitle {
-  animation: heroCopyLinear 1.5s linear var(--hero-subtitle-delay) forwards;
+  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
 body.intro-complete .hero-content .hero-actions {
-  animation: heroCopyLinear 1.5s linear var(--hero-actions-delay) forwards;
+  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
 .hero-content::after {
@@ -663,8 +659,20 @@ body.intro-complete .hero-content .hero-actions {
 @keyframes heroNameCharIn {
   from {
     opacity: 0;
-    transform: translateY(14px) rotate(-5deg);
-    filter: blur(4px);
+    transform: translateY(10px) scale(0.97) rotate(-2deg);
+    filter: blur(2.4px);
+  }
+
+  58% {
+    opacity: 0.82;
+    transform: translateY(1px) scale(1.008) rotate(0.4deg);
+    filter: blur(0.7px);
+  }
+
+  84% {
+    opacity: 1;
+    transform: translateY(-0.5px) scale(1.003) rotate(-0.12deg);
+    filter: blur(0.08px);
   }
 
   to {
@@ -746,13 +754,15 @@ h1 {
   margin-left: 0.08em;
   vertical-align: 0.08em;
   background: rgba(83, 92, 57, 0.86);
-  animation: heroTitleCaretBlink 0.8s steps(1, end) infinite;
+  animation:
+    heroTitleCaretBlink 0.8s steps(1, end) infinite,
+    heroTitleCaretGlide 2.55s cubic-bezier(0.18, 0.86, 0.2, 1) forwards;
 }
 
 .hero-name-char {
   display: inline-block;
   opacity: 0;
-  animation: heroNameCharIn 0.68s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: heroNameCharIn 0.92s cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
 }
 
 .hero-name-char.is-space {
@@ -761,6 +771,17 @@ h1 {
 
 .hero-name-char.accent {
   color: var(--tertiary);
+  transform-origin: center 70%;
+}
+
+@keyframes heroTitleCaretGlide {
+  from {
+    transform: translateX(0) translateY(0);
+  }
+
+  to {
+    transform: translateX(0.12em) translateY(0);
+  }
 }
 
 .calli-cap {
@@ -782,39 +803,49 @@ h1 {
 }
 
 .countdown-wrap {
-  margin: 1.4rem auto 0;
-  display: flex;
-  justify-content: center;
+  margin: 1rem auto 0;
+  display: grid;
+  justify-items: center;
+  gap: 0.32rem;
   width: 100%;
-  padding: 0.65rem 0.8rem;
+  padding: 0.22rem 0.34rem;
   border-radius: 14px;
+}
+
+.countdown-kicker {
+  font-size: 0.52rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--tertiary);
+  opacity: 0.82;
 }
 
 .countdown {
   display: flex;
   flex-wrap: nowrap;
-  gap: 0.6rem;
+  gap: 0.52rem;
   justify-content: center;
+  align-items: start;
 }
 
 .flip-unit {
   display: grid;
-  gap: 0.36rem;
+  gap: 0.16rem;
   justify-items: center;
 }
 
 .flip-digits {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   perspective: 900px;
   color: var(--bg-soft);
 }
 
 .flip-card {
   position: relative;
-  width: 45px;
-  height: 60px;
-  border-radius: 7px;
+  width: 29px;
+  height: 39px;
+  border-radius: 5px;
   background: var(--tertiary);
   overflow: hidden;
 }
@@ -836,7 +867,7 @@ h1 {
   right: -2px;
   top: 50%;
   transform: translateY(-50%);
-  height: 14px;
+  height: 9px;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.54) 0 8%, transparent 8% 92%, rgba(255, 255, 255, 0.54) 92% 100%);
   opacity: 0.2;
@@ -849,7 +880,7 @@ h1 {
   display: grid;
   place-items: center;
   /* font-family: "Manrope", sans-serif; */
-  font-size: 2.5rem;
+  font-size: 1.56rem;
   line-height: 1;
   color: var(--bg-soft);
   font-weight: 500;
@@ -878,11 +909,12 @@ h1 {
 }
 
 .flip-label {
-  /* font-family: "Manrope", sans-serif; */
-  font-size: 0.7rem;
-  letter-spacing: 0.11em;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.46rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--tertiary);
+  opacity: 0.88;
 }
 
 .hero-actions {
@@ -1742,13 +1774,57 @@ h1 {
 }
 
 @media (max-width: 720px) {
-  .seal-image {
-    width: min(72vw, 320px);
+  .hero {
+    min-height: 82svh;
+    padding-top: 4.25rem;
+    background-position: center 23%;
   }
 
-  .seal-prompt {
-    bottom: -4.2rem;
-    font-size: 0.68rem;
+  .hero::before {
+    background-position: center 23%;
+    opacity: 0.26;
+  }
+
+  .hero-content {
+    max-width: min(92vw, 28rem);
+    padding: 1.1rem 0.78rem 0.95rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.7rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+
+  h1 {
+    font-size: clamp(3.2rem, 14vw, 5rem);
+    min-height: 1.02em;
+  }
+
+  .hero-text {
+    margin-top: 0.72rem;
+    font-size: clamp(1.02rem, 4.6vw, 1.22rem);
+    line-height: 1.34;
+    min-height: 3.2rem;
+  }
+
+  .hero-subtitle {
+    margin-top: 0.72rem;
+    font-size: 0.94rem;
+  }
+
+  .hero-actions {
+    margin-top: 1.1rem;
+    gap: 0.55rem;
+  }
+
+  .btn {
+    padding: 0.68rem 0.98rem;
+    font-size: 0.82rem;
+  }
+
+  .seal-image {
+    width: min(72vw, 320px);
   }
 
   .menu-toggle {
@@ -1931,34 +2007,44 @@ h1 {
   }
 
   .hero-content {
-    padding: 1.35rem 0.85rem;
+    padding: 1.1rem 0.78rem 0.95rem;
   }
 
   .countdown-wrap {
-    padding: 0.45rem 0.5rem;
+    padding: 0.18rem 0.28rem;
     border-radius: 12px;
   }
 
   .countdown {
-    gap: 0.45rem;
+    gap: 0.42rem;
   }
 
   .flip-unit {
-    gap: 0.24rem;
+    gap: 0.12rem;
+  }
+
+  .countdown-kicker {
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
   }
 
   .flip-digits {
-    gap: 3px;
+    gap: 2px;
   }
 
   .flip-card {
-    width: 34px;
-    height: 46px;
-    border-radius: 6px;
+    width: 25px;
+    height: 33px;
+    border-radius: 5px;
   }
 
   .flip-card .digit {
-    font-size: 1.65rem;
+    font-size: 1.1rem;
+  }
+
+  .flip-label {
+    font-size: 0.42rem;
+    letter-spacing: 0.05em;
   }
 
   .flip-label {
