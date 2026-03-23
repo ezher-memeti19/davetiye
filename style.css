@@ -739,11 +739,14 @@ h3 {
 
 h1 {
   font-family: "Ms Madi", cursive;
-  font-size: clamp(4.3rem, 11vw, 8rem);
+  font-size: clamp(4.5rem, 11.2vw, 8.2rem);
   line-height: 1.02;
   font-weight: 400;
   letter-spacing: 0;
   min-height: 1.15em;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
 }
 
 .hero-content h1.is-writing::after {
@@ -1787,7 +1790,7 @@ h1 {
 
   .hero-content {
     max-width: min(92vw, 28rem);
-    padding: 1.1rem 0.78rem 0.95rem;
+    padding: 1.1rem 0.5rem 0.95rem;
   }
 
   .eyebrow {
@@ -1797,7 +1800,7 @@ h1 {
   }
 
   h1 {
-    font-size: clamp(3.2rem, 14vw, 5rem);
+    font-size: clamp(3.65rem, 16vw, 6rem);
     min-height: 1.02em;
   }
 
@@ -2007,7 +2010,7 @@ h1 {
   }
 
   .hero-content {
-    padding: 1.1rem 0.78rem 0.95rem;
+    padding: 1.1rem 0.5rem 0.95rem;
   }
 
   .countdown-wrap {

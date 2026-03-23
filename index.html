@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Join us for the wedding celebration of Eda and Ezher on August 3, 2026." />
+  <meta name="description" content="Join us for the wedding celebration of Eda and Ezher on August 3, 2026."
+    data-i18n-content="meta_description" />
   <title>Eda & Ezher | Wedding Invitation</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -21,9 +22,10 @@
 <body class="intro-active">
   <div class="intro-overlay" id="introOverlay" aria-hidden="true">
     <div class="seal-stage" id="sealStage">
-      <button class="seal-button" id="sealButton" type="button" aria-label="Open invitation">
+      <button class="seal-button" id="sealButton" type="button" aria-label="Open invitation"
+        data-i18n-aria-label="open_invitation">
         <img class="seal-image" src="seal_transparent_refined.png" alt="" aria-hidden="true" />
-        <span class="seal-prompt">Tap to open</span>
+        <span class="seal-prompt" data-i18n="tap_to_open">Tap to open</span>
       </button>
     </div>
 
@@ -39,14 +41,15 @@
     <a href="#top" class="logo"><span class="calli-cap">E</span> <span class="calli-cap">&</span> <span
         class="calli-cap">E</span></a>
     <div class="lang-toggle">
-      <label for="langSelect" class="sr-only">Language</label>
-      <select id="langSelect" class="lang-select" aria-label="Language switcher">
+      <label for="langSelect" class="sr-only" data-i18n="language_label">Language</label>
+      <select id="langSelect" class="lang-select" aria-label="Language switcher"
+        data-i18n-aria-label="language_switcher">
         <option value="en">EN</option>
         <option value="tr">TR</option>
         <option value="al">AL</option>
       </select>
     </div>
-    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" data-i18n-aria-label="toggle_menu">
       <span class="menu-toggle-icon" aria-hidden="true"></span>
       <span class="menu-toggle-text" data-i18n="menu">Menu</span>
     </button>
@@ -158,7 +161,7 @@
             </div>
           </div>
           <div class="venue-map-shell">
-            <div class="google-map" id="map1" aria-label="Restaurant Ajka Map"></div>
+            <div class="google-map" id="map1" aria-label="Restaurant Ajka Map" data-i18n-aria-label="map_ajka"></div>
           </div>
           <div class="venue-actions">
             <a class="venue-link" target="_blank" rel="noopener noreferrer"
@@ -188,7 +191,7 @@
             </div>
           </div>
           <div class="venue-map-shell">
-            <div class="google-map" id="map2" aria-label="Restaurant Shaza Map"></div>
+            <div class="google-map" id="map2" aria-label="Restaurant Shaza Map" data-i18n-aria-label="map_shaza"></div>
           </div>
           <div class="venue-actions">
             <a class="venue-link" target="_blank" rel="noopener noreferrer"
@@ -212,24 +215,24 @@
     <section class="section" id="share-moments">
       <div class="section-heading reveal">
         <h3 class="eyebrow" data-i18n="share_moments_eyebrow">Share Your Moments</h3>
-        <h2>Moments We Will Keep Forever</h2>
+        <h2 data-i18n="moments_title">Moments We Will Keep Forever</h2>
       </div>
       <div class="moments-form reveal">
         <div class="moments-copy">
-          <p class="moments-kicker">Private upload</p>
-          <p class="moments-lead">Photos and videos are collected through a private Google Form and are not visible to
+          <p class="moments-kicker" data-i18n="moments_kicker">Private upload</p>
+          <p class="moments-lead" data-i18n="moments_lead">Photos and videos are collected through a private Google Form and are not visible to
             other guests.</p>
         </div>
         <div class="moments-note-list">
-          <p>Upload multiple photos or videos in one go.</p>
-          <p>Your files go directly to our private Google Drive collection.</p>
-          <p>Guests cannot browse, view, or access each other's uploads.</p>
+          <p data-i18n="moments_note_1">Upload multiple photos or videos in one go.</p>
+          <p data-i18n="moments_note_2">Your files go directly to our private Google Drive collection.</p>
+          <p data-i18n="moments_note_3">Guests cannot browse, view, or access each other's uploads.</p>
         </div>
         <p class="privacy-note" data-i18n="moments_privacy_note">Your photos will be sent privately to us and will not
           be visible to other guests.</p>
         <a class="btn btn-solid moments-submit"
           href="https://docs.google.com/forms/d/e/1FAIpQLScQ4FEGVm2NX4cBxP_mCjOxgkO7e11FZIRPhhU-XipC8BVeKg/viewform?usp=pp_url"
-          target="_blank" rel="noopener noreferrer">
+          target="_blank" rel="noopener noreferrer" data-i18n="moments_open_form">
           Open Private Upload Form
         </a>
       </div>
