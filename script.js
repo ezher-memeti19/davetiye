@@ -435,6 +435,7 @@ function initIntroOverlay() {
   window.clearTimeout(initIntroOverlay.timeoutId);
   window.clearTimeout(initIntroOverlay.hideSealStageTimeoutId);
   window.clearTimeout(initIntroOverlay.startFlapsTimeoutId);
+  window.clearTimeout(initIntroOverlay.scrollCueTimeoutId);
   stopHeroTitleWriting();
   introOverlay.hidden = false;
   introOverlay.classList.remove("is-complete", "is-playing", "allow-through");
@@ -442,6 +443,7 @@ function initIntroOverlay() {
   revealStage?.classList.remove("is-active");
   revealStage?.setAttribute("aria-hidden", "true");
   document.body.classList.remove("intro-complete");
+  document.body.classList.remove("hero-scroll-ready");
   document.body.classList.add("intro-active");
   resetIntroBranchAnimation();
   renderHeroTitle();
@@ -481,6 +483,9 @@ function initIntroOverlay() {
     initIntroOverlay.hideSealStageTimeoutId = window.setTimeout(() => {
       sealStage?.classList.add("is-hidden");
     }, 2950);
+    initIntroOverlay.scrollCueTimeoutId = window.setTimeout(() => {
+      document.body.classList.add("hero-scroll-ready");
+    }, 4300);
     initIntroOverlay.timeoutId = window.setTimeout(finishIntro, 3900);
   };
 

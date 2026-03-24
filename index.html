@@ -102,16 +102,29 @@
   </div>
 
   <header class="site-header">
-    <a href="#top" class="logo"><span class="calli-cap">E</span> <span class="calli-cap">&</span> <span
-        class="calli-cap">E</span></a>
+    <a href="#top" class="logo">
+      <span class="logo-mark"><span class="calli-cap">E</span> <span class="calli-cap">&</span> <span
+          class="calli-cap">E</span></span>
+      <span class="logo-copy">Wedding Day</span>
+    </a>
     <div class="lang-toggle">
-      <label for="langSelect" class="sr-only" data-i18n="language_label">Language</label>
-      <select id="langSelect" class="lang-select" aria-label="Language switcher"
-        data-i18n-aria-label="language_switcher">
-        <option value="en">EN</option>
-        <option value="tr">TR</option>
-        <option value="al">AL</option>
-      </select>
+      <label for="langSelect" class="lang-label" data-i18n="language_label">Language</label>
+      <div class="lang-select-wrap">
+        <span class="lang-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <circle cx="12" cy="12" r="8.25"></circle>
+            <path d="M3.75 12H20.25"></path>
+            <path d="M12 3.75C14.85 6.55 16.5 9.9 16.5 12C16.5 14.1 14.85 17.45 12 20.25"></path>
+            <path d="M12 3.75C9.15 6.55 7.5 9.9 7.5 12C7.5 14.1 9.15 17.45 12 20.25"></path>
+          </svg>
+        </span>
+        <select id="langSelect" class="lang-select" aria-label="Language switcher"
+          data-i18n-aria-label="language_switcher">
+          <option value="en">EN</option>
+          <option value="tr">TR</option>
+          <option value="al">AL</option>
+        </select>
+      </div>
     </div>
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" data-i18n-aria-label="toggle_menu">
       <span class="menu-toggle-icon" aria-hidden="true"></span>
@@ -155,6 +168,14 @@
             Calendar</button>
         </div>
       </div>
+      <a href="#schedule" class="hero-scroll-cue" aria-label="Scroll to schedule">
+        <span class="hero-scroll-line" aria-hidden="true"></span>
+        <span class="hero-scroll-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M7 10.5L12 15.5L17 10.5"></path>
+          </svg>
+        </span>
+      </a>
     </section>
 
     <section class="section" id="schedule">
