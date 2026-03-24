@@ -274,6 +274,7 @@ const introOverlay = document.getElementById("introOverlay");
 const sealStage = document.getElementById("sealStage");
 const revealStage = document.getElementById("revealStage");
 const sealButton = document.getElementById("sealButton");
+let introBranch = document.querySelector(".intro-branch");
 const heroTitleEl = document.querySelector(".hero-content h1");
 const heroTextEl = document.querySelector(".hero-text");
 const heroTitleText = (heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
@@ -377,6 +378,57 @@ function renderDateFlipcards() {
   renderDigitCards(dateCardEls.year, null, "2026");
 }
 
+function playIntroBranchAnimation() {
+  if (!introBranch) return;
+
+  const setAnimation = (selector, value) => {
+    introBranch.querySelectorAll(selector).forEach((node) => {
+      node.style.animation = value;
+    });
+  };
+
+  const branchDelay = 0.45;
+  const leafDelay = 0.65;
+  const veinDelay = 0.82;
+  const washDelay = 0.94;
+
+  introBranch.style.animation =
+    "heroCornerBranchAppear 0.2s linear 0.2s forwards, introBranchFloat 16s ease-in-out 6.2s infinite";
+
+  setAnimation(
+    ".intro-branch-reveal-rect",
+    `introBranchReveal 4.8s cubic-bezier(0.2, 0.74, 0.22, 1) ${branchDelay}s forwards`
+  );
+  setAnimation(
+    ".intro-branch-stem",
+    `heroStemSlowDraw 5.4s cubic-bezier(0.18, 0.76, 0.2, 1) ${branchDelay}s forwards`
+  );
+  setAnimation(".intro-leaf-outline, .intro-olive-outline", `heroLeafSlowDraw 1.5s ease-out ${leafDelay}s forwards`);
+  setAnimation(".intro-leaf-vein", `heroVeinDraw 1.15s ease-out ${veinDelay}s forwards`);
+  setAnimation(".intro-water-leaf, .intro-water-olive", `heroWatercolorBloom 1.8s ease-out ${washDelay}s forwards`);
+  setAnimation(".intro-wash", `heroWatercolorWash 1.7s ease-out ${washDelay}s forwards`);
+}
+
+function resetIntroBranchAnimation() {
+  if (!introBranch) return;
+  const nextBranch = introBranch.cloneNode(true);
+  introBranch.replaceWith(nextBranch);
+  introBranch = nextBranch;
+  introBranch.classList.remove("is-animating");
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      introBranch?.classList.add("is-animating");
+      playIntroBranchAnimation();
+    });
+  });
+}
+
+function playIntroBranchExit() {
+  if (!introBranch) return;
+  introBranch.classList.remove("is-animating");
+  introBranch.style.animation = "introBranchExit 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards";
+}
+
 function initIntroOverlay() {
   if (!introOverlay) return;
 
@@ -391,6 +443,7 @@ function initIntroOverlay() {
   revealStage?.setAttribute("aria-hidden", "true");
   document.body.classList.remove("intro-complete");
   document.body.classList.add("intro-active");
+  resetIntroBranchAnimation();
   renderHeroTitle();
   renderHeroText((translations[currentLang] || translations.en).hero_text);
   void introOverlay.offsetWidth;
@@ -410,6 +463,7 @@ function initIntroOverlay() {
   const startReveal = () => {
     if (opened) return;
     opened = true;
+    playIntroBranchExit();
     document.body.classList.remove("intro-active");
     document.body.classList.add("intro-complete");
     renderHeroTitle({ animate: true, delay: HERO_SEQUENCE.titleDelay * 1000 });

@@ -119,6 +119,216 @@ body.intro-active .hero-content>* {
   z-index: 1;
 }
 
+.intro-branch {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 12.25rem);
+  width: min(12.6rem, 38vw);
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  overflow: visible;
+  transform: translateX(-50%) rotate(2deg);
+  z-index: 1;
+}
+
+.intro-branch-reveal-rect {
+  transform-origin: left center;
+  transform-box: fill-box;
+  transform: scaleX(1rem);
+}
+
+.intro-branch-stem,
+.intro-leaf-outline,
+.intro-olive-outline,
+.intro-leaf-vein,
+.intro-wash {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.intro-branch-stem {
+  stroke: rgba(70, 84, 45, 0.86);
+  stroke-width: 3.1;
+  stroke-dasharray: 520;
+  stroke-dashoffset: 520;
+  opacity: 0;
+}
+
+.intro-leaf-outline,
+.intro-olive-outline {
+  stroke: rgba(96, 118, 56, 0.84);
+  stroke-width: 1.75;
+  stroke-dasharray: 140;
+  stroke-dashoffset: 140;
+  opacity: 0;
+}
+
+.intro-leaf-vein {
+  stroke: rgba(98, 120, 61, 0.56);
+  stroke-width: 1.05;
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  opacity: 0;
+}
+
+.intro-wash {
+  stroke: rgba(201, 215, 181, 0.58);
+  stroke-width: 5.8;
+  opacity: 0;
+}
+
+.intro-water-leaf,
+.intro-water-olive {
+  fill: url("#introLeafWash");
+  opacity: 0;
+  filter: blur(2.2px);
+}
+
+.intro-water-olive {
+  fill: #b8ca89;
+}
+
+.intro-branch.is-animating {
+  animation:
+    heroCornerBranchAppear 0.2s linear 0.2s forwards,
+    introBranchFloat 10s ease-in-out 6.2s infinite;
+}
+
+.intro-branch.is-animating .intro-branch-reveal-rect {
+  animation: introBranchReveal 4.8s cubic-bezier(0.2, 0.74, 0.22, 1) 0.45s forwards;
+}
+
+.intro-branch.is-animating .intro-branch-stem {
+  animation: heroStemSlowDraw 5.4s cubic-bezier(0.18, 0.76, 0.2, 1) 0.45s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-1 {
+  animation: heroLeafSlowDraw 1.5s ease-out 1.15s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-2 {
+  animation: heroLeafSlowDraw 1.5s ease-out 1.6s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-3 {
+  animation: heroLeafSlowDraw 1.5s ease-out 2.2s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-4 {
+  animation: heroLeafSlowDraw 1.5s ease-out 2.9s forwards;
+}
+
+.intro-branch.is-animating .intro-olive-outline-1 {
+  animation: heroLeafSlowDraw 1.5s ease-out 3.55s forwards;
+}
+
+.intro-branch.is-animating .intro-olive-outline-2 {
+  animation: heroLeafSlowDraw 1.5s ease-out 3.77s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-5 {
+  animation: heroLeafSlowDraw 1.5s ease-out 4.25s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-6 {
+  animation: heroLeafSlowDraw 1.5s ease-out 4.9s forwards;
+}
+
+.intro-branch.is-animating .intro-leaf-outline-7 {
+  animation: heroLeafSlowDraw 1.5s ease-out 5.4s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-1 {
+  animation: heroVeinDraw 1.15s ease-out 1.85s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-2 {
+  animation: heroVeinDraw 1.15s ease-out 2.25s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-3 {
+  animation: heroVeinDraw 1.15s ease-out 2.75s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-4 {
+  animation: heroVeinDraw 1.15s ease-out 3.4s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-5 {
+  animation: heroVeinDraw 1.15s ease-out 4.5s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-6 {
+  animation: heroVeinDraw 1.15s ease-out 5.15s forwards;
+}
+
+.intro-branch.is-animating .intro-vein-7 {
+  animation: heroVeinDraw 1.15s ease-out 5.6s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-1 {
+  animation: heroWatercolorBloom 1.8s ease-out 1.7s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-2 {
+  animation: heroWatercolorBloom 1.8s ease-out 2.05s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-3 {
+  animation: heroWatercolorBloom 1.8s ease-out 2.6s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-4 {
+  animation: heroWatercolorBloom 1.8s ease-out 3.25s forwards;
+}
+
+.intro-branch.is-animating .intro-water-olive-1 {
+  animation: heroWatercolorBloom 1.8s ease-out 3.85s forwards;
+}
+
+.intro-branch.is-animating .intro-water-olive-2 {
+  animation: heroWatercolorBloom 1.8s ease-out 4.05s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-5 {
+  animation: heroWatercolorBloom 1.8s ease-out 4.65s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-6 {
+  animation: heroWatercolorBloom 1.8s ease-out 5.3s forwards;
+}
+
+.intro-branch.is-animating .intro-water-leaf-7 {
+  animation: heroWatercolorBloom 1.8s ease-out 5.8s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-1 {
+  animation: heroWatercolorWash 1.7s ease-out 1.8s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-2 {
+  animation: heroWatercolorWash 1.7s ease-out 2.15s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-3 {
+  animation: heroWatercolorWash 1.7s ease-out 2.7s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-4 {
+  animation: heroWatercolorWash 1.7s ease-out 3.4s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-5 {
+  animation: heroWatercolorWash 1.7s ease-out 4.75s forwards;
+}
+
+.intro-branch.is-animating .intro-wash-6 {
+  animation: heroWatercolorWash 1.7s ease-out 5.4s forwards;
+}
+
 .seal-stage.is-hidden {
   opacity: 0;
   visibility: hidden;
@@ -128,7 +338,7 @@ body.intro-active .hero-content>* {
 
 .seal-button {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   border: 0;
   background: transparent;
   cursor: pointer;
@@ -216,6 +426,10 @@ body.intro-active .hero-content>* {
   animation: sealButtonExit 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
 }
 
+.intro-overlay.is-playing .intro-branch {
+  animation: introBranchExit 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards;
+}
+
 .intro-overlay.is-playing .seal-stage::before {
   animation: fadeSealBackground 1.8s cubic-bezier(0.22, 1, 0.36, 1) 1.05s forwards;
 }
@@ -235,6 +449,20 @@ body.intro-active .hero-content>* {
 
   to {
     opacity: 1;
+  }
+}
+
+@keyframes introBranchExit {
+  from {
+    opacity: 1;
+    transform: translateX(-50%) rotate(2deg);
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-0.7rem) rotate(2deg) scale(0.95);
+    filter: blur(8px);
   }
 }
 
@@ -485,16 +713,25 @@ body.intro-active .hero-content>* {
   -webkit-backdrop-filter: blur(1px) saturate(1.1);
   border-radius: 4% 12% 8% 10% / 8% 10% 12% 6%;
   padding: 2rem 1.4rem;
-  overflow: hidden;
+  overflow: visible;
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.18),
-    0 18px 40px rgba(65, 67, 27, 0.12);
+    inset -18px 0 28px rgba(255, 255, 255, 0.08),
+    0 18px 40px rgba(65, 67, 27, 0.12),
+    18px 28px 44px rgba(65, 67, 27, 0.12),
+    -8px 10px 24px rgba(255, 255, 255, 0.08);
   animation: waterBlob 15s ease-in-out infinite;
   opacity: 0;
   transform: translateY(36px) scale(0.97);
   filter: blur(2px);
   visibility: hidden;
   pointer-events: none;
+  isolation: isolate;
+}
+
+.hero-content>* {
+  position: relative;
+  z-index: 2;
 }
 
 body.intro-complete .hero-content {
@@ -542,8 +779,17 @@ body.intro-complete .hero-content .hero-actions {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   border-radius: inherit;
   background:
+    radial-gradient(circle at 102% 46%,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.08) 18%,
+      rgba(255, 255, 255, 0) 42%),
+    radial-gradient(circle at 94% 54%,
+      rgba(135, 145, 95, 0.09) 0%,
+      rgba(135, 145, 95, 0.04) 20%,
+      rgba(135, 145, 95, 0) 38%),
     radial-gradient(circle at 70% 80%,
       rgba(167, 173, 137, 0.14) 0%,
       rgba(167, 173, 137, 0.05) 22%,
@@ -555,8 +801,17 @@ body.intro-complete .hero-content .hero-actions {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   border-radius: inherit;
   background:
+    linear-gradient(102deg,
+      rgba(255, 255, 255, 0) 62%,
+      rgba(255, 255, 255, 0.1) 80%,
+      rgba(120, 131, 82, 0.08) 100%),
+    radial-gradient(circle at 96% 58%,
+      rgba(255, 255, 255, 0.16) 0%,
+      rgba(255, 255, 255, 0.08) 14%,
+      rgba(255, 255, 255, 0) 30%),
     radial-gradient(circle at 30% 25%,
       rgba(255, 255, 255, 0.38) 0%,
       rgba(255, 255, 255, 0.14) 18%,
@@ -564,7 +819,6 @@ body.intro-complete .hero-content .hero-actions {
   pointer-events: none;
   animation: waterShine 2s ease-in-out infinite;
 }
-
 
 @keyframes waterBlob {
 
@@ -608,6 +862,100 @@ body.intro-complete .hero-content .hero-actions {
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+@keyframes heroCornerBranchAppear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes heroStemSlowDraw {
+  from {
+    stroke-dashoffset: 520;
+    opacity: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes heroLeafSlowDraw {
+  from {
+    stroke-dashoffset: 140;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes heroVeinDraw {
+  from {
+    stroke-dashoffset: 80;
+    opacity: 0;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes heroWatercolorBloom {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+  }
+
+  to {
+    opacity: 0.82;
+    filter: blur(0);
+  }
+}
+
+@keyframes heroWatercolorWash {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes introBranchReveal {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes introBranchFloat {
+
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(2deg) translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(3.5deg) translate3d(0.12rem, -0.24rem, 0);
   }
 }
 
@@ -1777,6 +2125,11 @@ h1 {
 }
 
 @media (max-width: 720px) {
+  .intro-branch {
+    top: calc(50% - 8rem);
+    width: min(9rem, 35vw);
+  }
+
   .hero {
     min-height: 94svh;
     padding-top: 4.9rem;
@@ -1790,7 +2143,7 @@ h1 {
 
   .hero-content {
     max-width: min(92vw, 28rem);
-    padding: 1.1rem 0.5rem 0.95rem;
+    padding: 1.1rem 0.5rem 3.7rem;
   }
 
   .eyebrow {

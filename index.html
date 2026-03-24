@@ -27,6 +27,70 @@
         <img class="seal-image" src="seal_transparent_refined.png" alt="" aria-hidden="true" />
         <span class="seal-prompt" data-i18n="tap_to_open">Tap to open</span>
       </button>
+      <svg class="intro-branch" viewBox="0 0 220 420" aria-hidden="true">
+        <defs>
+          <filter id="introBranchWatercolor" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="2" seed="8" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="4.5" xChannelSelector="R" yChannelSelector="G" />
+            <feGaussianBlur stdDeviation="0.18" />
+          </filter>
+          <filter id="introBranchSoften" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="1.25" />
+          </filter>
+          <linearGradient id="introLeafWash" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#dce6cf" />
+            <stop offset="48%" stop-color="#a1b57d" />
+            <stop offset="100%" stop-color="#6d8445" />
+          </linearGradient>
+          <clipPath id="introBranchRevealClip">
+            <rect class="intro-branch-reveal-rect" x="0" y="0" width="220" height="420" rx="24" />
+          </clipPath>
+        </defs>
+
+        <g class="intro-branch-reveal" clip-path="url(#introBranchRevealClip)">
+          <g class="intro-branch-watercolor" filter="url(#introBranchWatercolor)">
+            <path class="intro-water-leaf intro-water-leaf-1" d="M128 -8C119 22 120 62 128 104C142 73 147 34 128 -8Z" />
+            <path class="intro-water-leaf intro-water-leaf-2" d="M95 2C86 30 90 69 126 104C121 72 114 34 95 2Z" />
+            <path class="intro-water-leaf intro-water-leaf-3" d="M165 38C151 65 145 101 130 133C154 119 173 87 165 38Z" />
+            <path class="intro-water-leaf intro-water-leaf-4" d="M45 118C70 134 93 158 126 198C92 194 56 174 45 118Z" />
+            <path class="intro-water-leaf intro-water-leaf-5" d="M145 187C132 221 130 263 140 304C154 279 165 238 145 187Z" />
+            <path class="intro-water-leaf intro-water-leaf-6" d="M22 258C56 265 88 282 144 312C100 321 50 307 22 258Z" />
+            <path class="intro-water-leaf intro-water-leaf-7" d="M74 331C101 330 129 338 167 357C128 364 94 358 74 331Z" />
+            <ellipse class="intro-water-olive intro-water-olive-1" cx="96" cy="230" rx="14" ry="17" />
+            <ellipse class="intro-water-olive intro-water-olive-2" cx="116" cy="236" rx="17" ry="18" />
+          </g>
+
+          <g class="intro-branch-strokes">
+            <path class="intro-branch-stem"
+              d="M131 18C125 56 124 93 126 128C127 162 127 193 128 222C129 258 136 292 149 323C158 345 171 370 188 397" />
+            <path class="intro-leaf-outline intro-leaf-outline-1" d="M128 -8C119 22 120 62 128 104C142 73 147 34 128 -8Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-2" d="M95 2C86 30 90 69 126 104C121 72 114 34 95 2Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-3" d="M165 38C151 65 145 101 130 133C154 119 173 87 165 38Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-4" d="M45 118C70 134 93 158 126 198C92 194 56 174 45 118Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-5" d="M145 187C132 221 130 263 140 304C154 279 165 238 145 187Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-6" d="M22 258C56 265 88 282 144 312C100 321 50 307 22 258Z" />
+            <path class="intro-leaf-outline intro-leaf-outline-7" d="M74 331C101 330 129 338 167 357C128 364 94 358 74 331Z" />
+            <ellipse class="intro-olive-outline intro-olive-outline-1" cx="96" cy="230" rx="14" ry="17" />
+            <ellipse class="intro-olive-outline intro-olive-outline-2" cx="116" cy="236" rx="17" ry="18" />
+            <path class="intro-leaf-vein intro-vein-1" d="M129 4C129 31 129 62 128 99" />
+            <path class="intro-leaf-vein intro-vein-2" d="M101 19C111 45 119 70 125 100" />
+            <path class="intro-leaf-vein intro-vein-3" d="M161 52C151 76 142 99 132 129" />
+            <path class="intro-leaf-vein intro-vein-4" d="M58 129C85 148 108 171 124 196" />
+            <path class="intro-leaf-vein intro-vein-5" d="M144 203C145 233 143 264 140 301" />
+            <path class="intro-leaf-vein intro-vein-6" d="M44 268C78 278 111 292 139 309" />
+            <path class="intro-leaf-vein intro-vein-7" d="M92 338C121 343 145 350 164 356" />
+          </g>
+
+          <g class="intro-branch-softwash" filter="url(#introBranchSoften)">
+            <path class="intro-wash intro-wash-1" d="M129 6C126 27 126 51 129 76" />
+            <path class="intro-wash intro-wash-2" d="M103 20C111 42 118 64 123 93" />
+            <path class="intro-wash intro-wash-3" d="M159 54C150 76 142 96 135 119" />
+            <path class="intro-wash intro-wash-4" d="M62 132C85 148 104 169 120 191" />
+            <path class="intro-wash intro-wash-5" d="M144 208C144 230 143 254 141 281" />
+            <path class="intro-wash intro-wash-6" d="M46 269C75 280 102 293 132 306" />
+          </g>
+        </g>
+      </svg>
     </div>
 
     <div class="reveal-stage" id="revealStage" aria-hidden="true">
