@@ -750,7 +750,7 @@ body.intro-active .hero-content>* {
   padding: 3rem 0;
 }
 
-.blessing-section + .section {
+.blessing-section+.section {
   padding-top: 3rem;
 }
 
@@ -771,17 +771,17 @@ body.intro-active .hero-content>* {
 }
 
 .blessing-bismillah {
-  font-size: clamp(1.8rem, 3.4vw, 2.1rem);
-  line-height: 1;
+  font-size: clamp(1.25rem, 3.15vw, 1.4rem);
+  line-height: 2;
   margin-bottom: 0.18rem;
 }
 
 .blessing-arabic {
-  max-width: 30ch;
-  font-size: clamp(1.25rem, 2vw, 1.4rem);
+  max-width: none;
+  font-size: clamp(1.5rem, 2.55vw, 2rem);
   line-height: 1.85;
   letter-spacing: 0.01em;
-  text-wrap: balance;
+  white-space: nowrap;
 }
 
 .blessing-translation {
@@ -2355,7 +2355,7 @@ h1 {
     padding: 2.25rem 0;
   }
 
-  .blessing-section + .section {
+  .blessing-section+.section {
     padding-top: 2.25rem;
   }
 
@@ -2364,13 +2364,12 @@ h1 {
   }
 
   .blessing-bismillah {
-    font-size: 1.8rem;
+    font-size: 0.8rem;
   }
 
   .blessing-arabic {
-    font-size: clamp(1.05rem, 4.6vw, 1.15rem);
-    line-height: 1.78;
-    max-width: 26ch;
+    font-size: clamp(1rem, 3.7vw, 5rem);
+    line-height: 1.7;
   }
 
   .blessing-translation {
@@ -2663,6 +2662,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
+
   .hero-content,
   .hero-content *,
   .countdown,
