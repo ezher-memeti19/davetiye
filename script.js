@@ -38,20 +38,20 @@ const translations = {
     s4_desc: "The wedding celebration begins on both sides at that time.",
     venues_eyebrow: "Venue Addresses",
     share_moments_eyebrow: "Share Your Moments",
-    moments_title: "Send Us Your Photos and Videos",
-    moments_kicker: "3 quick steps",
-    moments_lead: "After the wedding, open the form, choose your photos or videos, and send them directly to us.",
-    moments_note_1: "Step 1: Open the upload form with the button below.",
-    moments_note_2: "Step 2: Select one or more photos or videos from your phone.",
-    moments_note_3: "Step 3: Submit them. We receive them privately in our Google Drive.",
-    moments_open_form: "Open Upload Form",
+    moments_title: "Let's Complete\nOur Memories Together",
+    moments_kicker: "",
+    moments_lead: "You are welcome to share the photos and videos you captured during our wedding day.",
+    moments_note_1: "Every moment captured will become a cherished memory that we will look back on with a smile for years to come.",
+    moments_note_2: "",
+    moments_note_3: "",
+    moments_open_form: "Share Your Memories",
     moments_name: "Your Name (optional)",
     moments_message: "Short Message (optional)",
     moments_files: "Upload Photos",
     moments_files_hint: "Photos and videos. You can upload multiple files.",
     moments_submit: "Send Photos",
     moments_submit_sending: "Sending...",
-    moments_privacy_note: "Only we can see the files you send. Other guests cannot open or view them.",
+    moments_submit: "Share Your Memories",
     moments_error_files_required: "Please select at least one image.",
     moments_error_images_only: "Please upload image or video files only.",
     moments_error_size_limit: "One or more files are too large.",
@@ -60,8 +60,8 @@ const translations = {
     venue_type_ceremony: "Ceremony",
     venue_type_reception: "Reception",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "Nikah starts at 18:00 at Restaurant Ajka and the women's celebration continues there afterwards.",
-    venue_desc_2: "The men's wedding celebration begins at 19:30 at Restaurant Shaza.",
+    venue_desc_1: "We will be delighted to welcome our female guests at Restaurant Ajka on this special day.",
+    venue_desc_2: "We look forward to sharing this special day with our male guests at Restaurant Shaza.",
     venue_desc_3: "A rooftop evening of music, laughter, and dancing under the lights.",
     venue_label_time: "Time",
     venue_label_location: "Location",
@@ -78,7 +78,7 @@ const translations = {
     message_placeholder: "Any note for the couple?",
     send_rsvp: "Send RSVP",
     footer_text: "With love, Eda & Ezher",
-    copy_details_text: "Eda & Ezher Wedding - August 3, 2026 at 18:00, Kalkandelen",
+    copy_details_text: "Eda & Ezher Wedding - August 3, 2026 at 19:30, Kalkandelen",
     toast_copy_success: "Event details copied.",
     toast_copy_fail: "Copy failed on this browser.",
     toast_rsvp_saved: "Thanks. Your RSVP has been saved.",
@@ -123,21 +123,22 @@ const translations = {
     s4_title: "Düğün Kutlaması",
     s4_desc: "O saatte düğün kutlaması her iki tarafta da başlar.",
     venues_eyebrow: "Mekan Adresleri",
+    // Turkish
     share_moments_eyebrow: "Anılarınızı Paylaşın",
-    moments_title: "Fotoğraf ve Videolarınızı Bize Gönderin",
-    moments_kicker: "3 kısa adım",
-    moments_lead: "Düğünden sonra aşağıdaki formu açın, telefonunuzdan fotoğraf veya video seçin ve bize doğrudan gönderin.",
-    moments_note_1: "1. adım: Aşağıdaki butonla yükleme formunu açın.",
-    moments_note_2: "2. adım: Telefonunuzdan bir veya birden fazla fotoğraf ya da video seçin.",
-    moments_note_3: "3. adım: Gönderin. Dosyalar bize özel olarak Google Drive'a ulaşır.",
-    moments_open_form: "Yükleme Formunu Aç",
+    moments_title: "Hatıralarımızı\nBirlikte Tamamlayalım",
+    moments_kicker: "",
+    moments_lead: "Düğün günümüzde çektiğiniz fotoğraf ve videoları bizimle paylaşabilirsiniz.",
+    moments_note_1: "Her kare, yıllar sonra gülümseyerek hatırlayacağımız bir anıya dönüşecek.",
+    moments_note_2: "",
+    moments_note_3: "",
+    moments_open_form: "Anılarınızı Gönderin",
     moments_name: "Adınız (isteğe bağlı)",
     moments_message: "Kısa Mesaj (isteğe bağlı)",
     moments_files: "Fotoğraf Yükle",
     moments_files_hint: "Fotoğraf ve video yükleyebilirsiniz. Birden fazla dosya ekleyebilirsiniz.",
-    moments_submit: "Fotoğrafları Gönder",
+    moments_submit: "Anılarınızı Gönderin",
     moments_submit_sending: "Gönderiliyor...",
-    moments_privacy_note: "Gönderdiğiniz dosyaları sadece biz görebiliriz. Diğer misafirler bu dosyaları açamaz veya göremez.",
+    moments_privacy_note: "Gönderilen içerikler yalnızca çift tarafından görüntülenebilir.",
     moments_error_files_required: "Lütfen en az bir görsel seçin.",
     moments_error_images_only: "Lütfen sadece fotoğraf veya video dosyaları yükleyin.",
     moments_error_size_limit: "Bir veya daha fazla dosya çok büyük.",
@@ -146,8 +147,8 @@ const translations = {
     venue_type_ceremony: "Tören",
     venue_type_reception: "Resepsiyon",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "Nikah saat 18:00'de Restaurant Ajka'da başlar ve ardından kadınların kutlaması orada devam eder.",
-    venue_desc_2: "Erkekler için düğün kutlaması saat 19:30'da Restaurant Shaza'da başlar.",
+    venue_desc_1: "Kadın misafirlerimizi bu özel günümüzde Restaurant Ajka'da ağırlamaktan mutluluk duyacağız.",
+    venue_desc_2: "Erkek misafirlerimizle bu anlamlı günü Restaurant Shaza'da paylaşacağız.",
     venue_desc_3: "Işıklar altında müzik, gülüş ve dans dolu bir çatı gecesi.",
     venue_label_time: "Saat",
     venue_label_location: "Mekan",
@@ -164,7 +165,7 @@ const translations = {
     message_placeholder: "Çift için bir notunuz var mı?",
     send_rsvp: "RSVP Gönder",
     footer_text: "Sevgiyle, Eda & Ezher",
-    copy_details_text: "Eda ve Ezher Düğünü - 3 Ağustos 2026, 18:00, Kalkandelen",
+    copy_details_text: "Eda ve Ezher Düğünü - 3 Ağustos 2026, 19:30, Kalkandelen",
     toast_copy_success: "Etkinlik bilgileri kopyalandı.",
     toast_copy_fail: "Bu tarayıcıda kopyalama başarısız.",
     toast_rsvp_saved: "Teşekkürler. RSVP kaydedildi.",
@@ -209,21 +210,22 @@ const translations = {
     s4_title: "Festimi i dasmës",
     s4_desc: "Në atë kohë festimi i dasmës fillon në të dyja anët.",
     venues_eyebrow: "Adresat",
-    share_moments_eyebrow: "Ndani Çastet Tuaja",
-    moments_title: "Na Dërgoni Fotot dhe Videot Tuaja",
-    moments_kicker: "3 hapa të shpejtë",
-    moments_lead: "Pas dasmës, hapeni formularin më poshtë, zgjidhni fotot ose videot nga telefoni juaj dhe dërgojini direkt tek ne.",
-    moments_note_1: "Hapi 1: Hapeni formularin e ngarkimit me butonin më poshtë.",
-    moments_note_2: "Hapi 2: Zgjidhni një ose disa foto apo video nga telefoni juaj.",
-    moments_note_3: "Hapi 3: Dërgojini. Skedarët vijnë privatisht tek ne në Google Drive.",
-    moments_open_form: "Hap Formularin e Ngarkimit",
+    // Albanian
+    share_moments_eyebrow: "Ndani Kujtimet Tuaja",
+    moments_title: "Le T’i Plotësojmë\nKujtimet Tona Së Bashku",
+    moments_kicker: "",
+    moments_lead: "Mund të ndani me ne fotografitë dhe videot që keni realizuar gjatë ditës sonë të dasmës.",
+    moments_note_1: "Çdo moment i kapur do të kthehet në një kujtim të çmuar që do ta kujtojmë me buzëqeshje për shumë vite.",
+    moments_note_2: "",
+    moments_note_3: "",
+    moments_open_form: "Dërgoni Kujtimet Tuaja",
     moments_name: "Emri juaj (opsionale)",
     moments_message: "Mesazh i shkurtër (opsionale)",
     moments_files: "Ngarko Foto",
     moments_files_hint: "Foto dhe video. Mund të ngarkoni disa skedarë.",
-    moments_submit: "Dërgo Fotot",
+    moments_submit: "Dërgoni Kujtimet Tuaja",
     moments_submit_sending: "Duke dërguar...",
-    moments_privacy_note: "Vetëm ne mund t'i shohim skedarët që dërgoni. Mysafirët e tjerë nuk mund t'i hapin ose t'i shohin.",
+    moments_privacy_note: "Përmbajtjet e dërguara mund të shikohen vetëm nga çifti.",
     moments_error_files_required: "Ju lutem zgjidhni të paktën një imazh.",
     moments_error_images_only: "Ju lutem ngarkoni vetëm skedarë foto ose video.",
     moments_error_size_limit: "Një ose më shumë skedarë janë shumë të mëdhenj.",
@@ -232,8 +234,8 @@ const translations = {
     venue_type_ceremony: "Ceremonia",
     venue_type_reception: "Resepsioni",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "Nikahu fillon në ora 18:00 në Restaurant Ajka dhe më pas festimi i grave vazhdon aty.",
-    venue_desc_2: "Festimi i dasmës për burrat fillon në ora 19:30 në Restaurant Shaza.",
+    venue_desc_1: "Do të kemi kënaqësinë t’i mirëpresim gratë në Restaurant Ajka në këtë ditë të veçantë.",
+    venue_desc_2: "Me kënaqësi do ta ndajmë këtë ditë të veçantë me burrat në Restaurant Shaza.",
     venue_desc_3: "Një mbrëmje në rooftop me muzikë, të qeshura dhe valle.",
     venue_label_time: "Ora",
     venue_label_location: "Vendndodhja",
@@ -283,7 +285,41 @@ const HERO_SEQUENCE = {
   titleDelay: 2.6
 };
 
-let currentLang = localStorage.getItem("wedding_lang") || "en";
+const supportedLanguages = ["tr", "al", "en"];
+const defaultLanguage = "en";
+const languageStorageKey = "wedding_language";
+
+function normalizeLanguage(lang) {
+  return supportedLanguages.includes(lang) ? lang : defaultLanguage;
+}
+
+function getLanguageFromUrl() {
+  const [lang] = window.location.pathname.split("/").filter(Boolean);
+  return normalizeLanguage(lang);
+}
+
+function persistLanguage(lang) {
+  try {
+    localStorage.setItem(languageStorageKey, normalizeLanguage(lang));
+  } catch {
+    // Ignore storage failures in private or restricted browsing modes.
+  }
+}
+
+function buildLanguageUrl(lang) {
+  const nextLang = normalizeLanguage(lang);
+  const segments = window.location.pathname.split("/").filter(Boolean);
+
+  if (supportedLanguages.includes(segments[0])) {
+    segments[0] = nextLang;
+  } else {
+    segments.unshift(nextLang);
+  }
+
+  return `/${segments.join("/")}${window.location.search}${window.location.hash}`;
+}
+
+let currentLang = getLanguageFromUrl();
 const dateCardEls = {
   day: document.getElementById("dayBox"),
   month: document.getElementById("monthBox"),
@@ -573,13 +609,21 @@ function applyLanguage(lang) {
   if (langSelect) langSelect.value = lang;
 
   currentLang = lang;
-  localStorage.setItem("wedding_lang", lang);
+  persistLanguage(lang);
   renderHeroText(dict.hero_text);
 }
 
 if (langSelect) {
   langSelect.addEventListener("change", (event) => {
-    applyLanguage(event.target.value);
+    const nextLang = normalizeLanguage(event.target.value);
+    persistLanguage(nextLang);
+
+    if (nextLang === currentLang) {
+      applyLanguage(nextLang);
+      return;
+    }
+
+    window.location.assign(buildLanguageUrl(nextLang));
   });
 }
 
