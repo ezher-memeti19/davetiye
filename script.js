@@ -285,41 +285,7 @@ const HERO_SEQUENCE = {
   titleDelay: 2.6
 };
 
-const supportedLanguages = ["tr", "al", "en"];
-const defaultLanguage = "en";
-const languageStorageKey = "wedding_language";
-
-function normalizeLanguage(lang) {
-  return supportedLanguages.includes(lang) ? lang : defaultLanguage;
-}
-
-function getLanguageFromUrl() {
-  const [lang] = window.location.pathname.split("/").filter(Boolean);
-  return normalizeLanguage(lang);
-}
-
-function persistLanguage(lang) {
-  try {
-    localStorage.setItem(languageStorageKey, normalizeLanguage(lang));
-  } catch {
-    // Ignore storage failures in private or restricted browsing modes.
-  }
-}
-
-function buildLanguageUrl(lang) {
-  const nextLang = normalizeLanguage(lang);
-  const segments = window.location.pathname.split("/").filter(Boolean);
-
-  if (supportedLanguages.includes(segments[0])) {
-    segments[0] = nextLang;
-  } else {
-    segments.unshift(nextLang);
-  }
-
-  return `/${segments.join("/")}${window.location.search}${window.location.hash}`;
-}
-
-let currentLang = getLanguageFromUrl();
+let currentLang = localStorage.getItem("wedding_lang") || "en";
 const dateCardEls = {
   day: document.getElementById("dayBox"),
   month: document.getElementById("monthBox"),
@@ -609,21 +575,13 @@ function applyLanguage(lang) {
   if (langSelect) langSelect.value = lang;
 
   currentLang = lang;
-  persistLanguage(lang);
+  localStorage.setItem("wedding_lang", lang);
   renderHeroText(dict.hero_text);
 }
 
 if (langSelect) {
   langSelect.addEventListener("change", (event) => {
-    const nextLang = normalizeLanguage(event.target.value);
-    persistLanguage(nextLang);
-
-    if (nextLang === currentLang) {
-      applyLanguage(nextLang);
-      return;
-    }
-
-    window.location.assign(buildLanguageUrl(nextLang));
+    applyLanguage(event.target.value);
   });
 }
 
