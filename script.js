@@ -267,6 +267,130 @@ const translations = {
   }
 };
 
+const SUPPORTED_LANGS = ["en", "tr", "al"];
+const HREFLANGS = {
+  en: "en",
+  tr: "tr",
+  al: "sq"
+};
+const SCROLL_RESTORE_KEY = "wedding_lang_scroll_restore";
+
+function normalizeLanguage(lang) {
+  return SUPPORTED_LANGS.includes(lang) ? lang : null;
+}
+
+function getPathSegments(pathname = window.location.pathname) {
+  return pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
+}
+
+function getLanguageFromPath(pathname = window.location.pathname) {
+  const [firstSegment] = getPathSegments(pathname);
+  return normalizeLanguage(firstSegment);
+}
+
+function detectBrowserLanguage() {
+  const browserLanguages = [navigator.language, ...(navigator.languages || [])]
+    .filter(Boolean)
+    .map((lang) => String(lang).toLowerCase());
+
+  if (browserLanguages.some((lang) => lang.startsWith("tr"))) return "tr";
+  if (browserLanguages.some((lang) => lang.startsWith("sq") || lang.startsWith("al"))) return "al";
+  return "en";
+}
+
+function getPreferredLanguage() {
+  const savedLanguage = normalizeLanguage(localStorage.getItem("wedding_lang"));
+  return savedLanguage || detectBrowserLanguage();
+}
+
+function buildLanguageUrl(lang, { search = window.location.search, hash = window.location.hash } = {}) {
+  return `/${lang}${search}${hash}`;
+}
+
+function navigateToLanguage(lang, { replace = false } = {}) {
+  const targetUrl = buildLanguageUrl(lang);
+  if (replace) {
+    window.location.replace(targetUrl);
+    return;
+  }
+  window.location.assign(targetUrl);
+}
+
+function resolveInitialLanguage() {
+  const pathSegments = getPathSegments();
+  const pathLanguage = getLanguageFromPath();
+
+  if (pathSegments.length === 0) {
+    navigateToLanguage(getPreferredLanguage(), { replace: true });
+    return null;
+  }
+
+  if (!pathLanguage) {
+    navigateToLanguage("en", { replace: true });
+    return null;
+  }
+
+  return pathLanguage;
+}
+
+function rememberScrollPosition(nextLang) {
+  if (window.location.hash) {
+    sessionStorage.removeItem(SCROLL_RESTORE_KEY);
+    return;
+  }
+
+  sessionStorage.setItem(
+    SCROLL_RESTORE_KEY,
+    JSON.stringify({
+      path: `/${nextLang}${window.location.search}`,
+      scrollY: window.scrollY
+    })
+  );
+}
+
+function restoreScrollPosition() {
+  if (window.location.hash) {
+    sessionStorage.removeItem(SCROLL_RESTORE_KEY);
+    return;
+  }
+
+  const stored = sessionStorage.getItem(SCROLL_RESTORE_KEY);
+  if (!stored) return;
+
+  try {
+    const { path, scrollY } = JSON.parse(stored);
+    const currentPath = `${window.location.pathname}${window.location.search}`;
+    if (path !== currentPath || typeof scrollY !== "number") return;
+
+    const applyScroll = () => window.scrollTo(0, scrollY);
+    applyScroll();
+    window.setTimeout(applyScroll, 4200);
+  } catch {
+    // ignore malformed session storage
+  } finally {
+    sessionStorage.removeItem(SCROLL_RESTORE_KEY);
+  }
+}
+
+function updateSeoLinks(lang) {
+  const origin = window.location.origin;
+  const canonicalHref = new URL(`/${lang}`, origin).href;
+
+  const canonicalLink = document.getElementById("canonicalLink");
+  const hreflangEn = document.getElementById("hreflangEn");
+  const hreflangTr = document.getElementById("hreflangTr");
+  const hreflangSq = document.getElementById("hreflangSq");
+  const hreflangDefault = document.getElementById("hreflangDefault");
+
+  if (canonicalLink) canonicalLink.setAttribute("href", canonicalHref);
+  if (hreflangEn) hreflangEn.setAttribute("href", new URL("/en", origin).href);
+  if (hreflangTr) hreflangTr.setAttribute("href", new URL("/tr", origin).href);
+  if (hreflangSq) hreflangSq.setAttribute("href", new URL("/al", origin).href);
+  if (hreflangDefault) hreflangDefault.setAttribute("href", new URL("/en", origin).href);
+}
+
+const resolvedLanguage = resolveInitialLanguage();
+
 const nav = document.getElementById("nav");
 const menuToggle = document.querySelector(".menu-toggle");
 const toast = document.getElementById("toast");
@@ -291,7 +415,7 @@ const HERO_SEQUENCE = {
   titleDelay: 2.6
 };
 
-let currentLang = localStorage.getItem("wedding_lang") || "en";
+let currentLang = resolvedLanguage || "en";
 const dateCardEls = {
   day: document.getElementById("dayBox"),
   month: document.getElementById("monthBox"),
@@ -554,28 +678,28 @@ function downloadCalendarFile() {
 
 function applyLanguage(lang) {
   const dict = translations[lang] || translations.en;
-  document.documentElement.lang = lang;
+  document.documentElement.lang = HREFLANGS[lang] || "en";
   document.title = `Eda & Ezher | ${dict.hero_eyebrow}`;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (key === "hero_text") return;
-    if (dict[key]) el.textContent = dict[key];
+    if (key in dict) el.textContent = dict[key];
   });
 
   document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => {
     const key = el.getAttribute("data-i18n-aria-label");
-    if (dict[key]) el.setAttribute("aria-label", dict[key]);
+    if (key in dict) el.setAttribute("aria-label", dict[key]);
   });
 
   document.querySelectorAll("[data-i18n-content]").forEach((el) => {
     const key = el.getAttribute("data-i18n-content");
-    if (dict[key]) el.setAttribute("content", dict[key]);
+    if (key in dict) el.setAttribute("content", dict[key]);
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const key = el.getAttribute("data-i18n-placeholder");
-    if (dict[key]) el.setAttribute("placeholder", dict[key]);
+    if (key in dict) el.setAttribute("placeholder", dict[key]);
   });
 
   if (langSelect) langSelect.value = lang;
@@ -583,11 +707,16 @@ function applyLanguage(lang) {
   currentLang = lang;
   localStorage.setItem("wedding_lang", lang);
   renderHeroText(dict.hero_text);
+  updateSeoLinks(lang);
 }
 
 if (langSelect) {
   langSelect.addEventListener("change", (event) => {
-    applyLanguage(event.target.value);
+    const nextLang = normalizeLanguage(event.target.value);
+    if (!nextLang || nextLang === currentLang) return;
+    localStorage.setItem("wedding_lang", nextLang);
+    rememberScrollPosition(nextLang);
+    navigateToLanguage(nextLang);
   });
 }
 
@@ -913,12 +1042,15 @@ window.addEventListener("load", () => {
   initVenueMap("map1", [42.0568637, 21.0369157], "Restaurant Ajka", "Nikah & women's ceremony");
   initVenueMap("map2", [42.0532959, 21.032429], "Restaurant Shaza", "Men's wedding celebration");
   initVenueMap("map3", [41.0474, 28.9872], "After Party Lounge", "Skyline Rooftop");
+  restoreScrollPosition();
 });
 revealEls.forEach((el) => revealObserver.observe(el));
 
-initIntroOverlay();
-window.addEventListener("pageshow", (event) => {
-  if (event.persisted) initIntroOverlay();
-});
-applyLanguage(currentLang);
-renderDateFlipcards();
+if (resolvedLanguage) {
+  initIntroOverlay();
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) initIntroOverlay();
+  });
+  applyLanguage(currentLang);
+  renderDateFlipcards();
+}

@@ -5,24 +5,28 @@ const multer = require("multer");
 require("dotenv").config();
 
 const app = express();
+const staticDir = path.join(__dirname);
+const indexFile = path.join(staticDir, "index.html");
+const supportedLanguageRoute = /^\/(en|tr|al)(?:\/.*)?$/;
+const unsupportedLanguageRoute = /^\/([a-z]{2,3})(?:\/.*)?$/i;
 
 const port = Number(process.env.PORT || 3000);
 const maxFileSizeBytes = Number(process.env.MAX_UPLOAD_FILE_SIZE_BYTES || 10 * 1024 * 1024);
 const maxFileCount = Number(process.env.MAX_UPLOAD_FILE_COUNT || 10);
 const dropboxRoot = process.env.DROPBOX_UPLOAD_ROOT || "/Wedding-Guest-Uploads";
 
-const requiredEnv = [
-  "DROPBOX_CLIENT_ID",
-  "DROPBOX_CLIENT_SECRET",
-  "DROPBOX_REFRESH_TOKEN"
-];
+// const requiredEnv = [
+//   "DROPBOX_CLIENT_ID",
+//   "DROPBOX_CLIENT_SECRET",
+//   "DROPBOX_REFRESH_TOKEN"
+// ];
 
-for (const key of requiredEnv) {
-  if (!process.env[key]) {
-    console.error(`Missing required environment variable: ${key}`);
-    process.exit(1);
-  }
-}
+// for (const key of requiredEnv) {
+//   if (!process.env[key]) {
+//     console.error(`Missing required environment variable: ${key}`);
+//     process.exit(1);
+//   }
+// }
 
 const upload = multer({
   storage: multer.memoryStorage(),
@@ -105,7 +109,8 @@ async function uploadFileToDropbox(accessToken, filePath, buffer) {
   }
 }
 
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(staticDir));
+app.use("/:lang(en|tr|al)", express.static(staticDir));
 
 app.post("/api/photos/upload", upload.array("photos", maxFileCount), async (req, res) => {
   try {
@@ -155,6 +160,17 @@ app.post("/api/photos/upload", upload.array("photos", maxFileCount), async (req,
     console.error("Upload route error:", error);
     return res.status(500).json({ error: "Upload failed." });
   }
+});
+
+app.get(supportedLanguageRoute, (_req, res) => {
+  res.sendFile(indexFile);
+});
+
+app.get(unsupportedLanguageRoute, (req, res, next) => {
+  if (req.path.startsWith("/api/")) {
+    return next();
+  }
+  return res.redirect(302, "/en");
 });
 
 app.use((error, _req, res, _next) => {
