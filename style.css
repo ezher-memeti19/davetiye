@@ -49,8 +49,7 @@ body.intro-active .hero-content {
   display: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(36px) scale(0.97);
-  filter: blur(12px);
+  transform: translateY(36px);
   pointer-events: none;
 }
 
@@ -769,6 +768,7 @@ body.intro-active .hero-content>* {
   /* filter: blur(2px); */
   visibility: hidden;
   pointer-events: none;
+  overflow: visible;
   /* isolation: isolate; */
 }
 
@@ -901,8 +901,7 @@ body.intro-complete.hero-scroll-ready .hero-scroll-arrow {
   from {
     opacity: 0;
     visibility: hidden;
-    transform: translateY(58px) scale(0.95);
-    filter: blur(18px);
+    transform: translateY(58px);
   }
 
   1% {
@@ -911,14 +910,12 @@ body.intro-complete.hero-scroll-ready .hero-scroll-arrow {
 
   62% {
     opacity: 1;
-    transform: translateY(-4px) scale(1.01);
-    filter: blur(1px);
+    transform: translateY(-4px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -1127,26 +1124,22 @@ body.intro-complete.hero-scroll-ready .hero-scroll-arrow {
 @keyframes heroNameCharIn {
   from {
     opacity: 0;
-    transform: translateY(10px) scale(0.97) rotate(-2deg);
-    filter: blur(2.4px);
+    transform: translateY(10px);
   }
 
   58% {
     opacity: 0.82;
-    transform: translateY(1px) scale(1.008) rotate(0.4deg);
-    filter: blur(0.7px);
+    transform: translateY(1px);
   }
 
   84% {
     opacity: 1;
-    transform: translateY(-0.5px) scale(1.003) rotate(-0.12deg);
-    filter: blur(0.08px);
+    transform: translateY(-0.5px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) rotate(0deg);
-    filter: blur(0);
+    transform: translateY(0);
   }
 }
 
@@ -1154,13 +1147,11 @@ body.intro-complete.hero-scroll-ready .hero-scroll-arrow {
   from {
     opacity: 0;
     transform: translateY(18px);
-    filter: blur(6px);
   }
 
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -1206,15 +1197,26 @@ h3 {
 }
 
 h1 {
-  font-family: "Ms Madi", cursive;
+  font-family: "Ms Madi", "Great Vibes", "Apple Chancery", "Segoe Script", cursive;
   font-size: clamp(4.5rem, 11.2vw, 8.2rem);
-  line-height: 1.02;
+  line-height: 1.25;
   font-weight: 400;
   letter-spacing: 0;
-  min-height: 1.15em;
+  min-height: auto;
+  padding-top: 0.12em;
+  padding-bottom: 0.16em;
+  overflow: visible;
   white-space: nowrap;
   display: inline-block;
   max-width: 100%;
+}
+
+.hero-content h1 {
+  line-height: 1.25;
+  min-height: auto;
+  padding-top: 0.12em;
+  padding-bottom: 0.16em;
+  overflow: visible;
 }
 
 .hero-content h1.is-writing::after {
@@ -1232,6 +1234,9 @@ h1 {
 
 .hero-name-char {
   display: inline-block;
+  line-height: 1.25;
+  overflow: visible;
+  will-change: auto;
   opacity: 0;
   animation: heroNameCharIn 0.92s cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
 }
@@ -1299,6 +1304,18 @@ h1 {
   align-items: start;
 }
 
+.countdown,
+.countdown-wrap,
+.flip-unit,
+.flip-digits,
+.flip-card,
+.flip-card .digit {
+  filter: none;
+  -webkit-filter: none;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+}
+
 .flip-unit {
   display: grid;
   gap: 0.16rem;
@@ -1356,6 +1373,7 @@ h1 {
   color: var(--bg-soft);
   font-weight: 500;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+  transform: none;
 }
 
 .flip-card.changed .digit {
@@ -2287,7 +2305,7 @@ h1 {
 
   h1 {
     font-size: clamp(3.65rem, 16vw, 6rem);
-    min-height: 1.02em;
+    min-height: auto;
   }
 
   .hero-text {
@@ -2540,6 +2558,43 @@ h1 {
     font-size: 0.68rem;
     letter-spacing: 0.08em;
     color: var(--tertiary);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content,
+  .hero-content *,
+  .countdown,
+  .countdown *,
+  .flip-card,
+  .flip-card .digit,
+  .hero-content h1,
+  .hero-name-char {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+
+  .hero-content h1 {
+    line-height: 1.28;
+    min-height: auto;
+    padding-top: 0.14em;
+    padding-bottom: 0.18em;
+    overflow: visible;
+  }
+
+  .hero-name-char {
+    line-height: 1.28;
+    overflow: visible;
+  }
+
+  .countdown,
+  .countdown-wrap,
+  .flip-unit,
+  .flip-digits,
+  .flip-card,
+  .flip-card .digit {
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
