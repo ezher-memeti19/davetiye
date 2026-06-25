@@ -666,7 +666,7 @@ function downloadCalendarFile() {
     `DTSTART:${formatIcsDate(start)}`,
     `DTEND:${formatIcsDate(end)}`,
     `SUMMARY:${escapeIcs(dict.calendar_title)}`,
-    `LOCATION:${escapeIcs("Kalkandelen")}`,
+    `LOCATION:${escapeIcs(dict.hero_subtitle)}`,
     `DESCRIPTION:${escapeIcs(dict.calendar_description)}`,
     "END:VEVENT",
     "END:VCALENDAR"
