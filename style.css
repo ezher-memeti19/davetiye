@@ -694,7 +694,7 @@ body.intro-active .hero-content>* {
   position: absolute;
   inset: 0;
   background: url("watercolor-hero2.png") center 60% / cover no-repeat;
-  opacity: 0.1;
+  opacity: 0.2;
   /* control image opacity here */
   z-index: -1;
 }
@@ -800,13 +800,13 @@ body.intro-active .hero-content>* {
   line-height: 1.45;
 }
 
-.blessing-reveal .blessing-inner > * {
+.blessing-reveal .blessing-inner>* {
   opacity: 0;
   transform: translateY(12px);
   transition: opacity 0.65s ease, transform 0.65s ease;
 }
 
-.blessing-reveal.visible .blessing-inner > * {
+.blessing-reveal.visible .blessing-inner>* {
   opacity: 1;
   transform: translateY(0);
 }
