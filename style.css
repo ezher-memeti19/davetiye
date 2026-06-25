@@ -800,6 +800,33 @@ body.intro-active .hero-content>* {
   line-height: 1.45;
 }
 
+.blessing-reveal .blessing-inner > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.blessing-reveal.visible .blessing-inner > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.blessing-reveal.visible .blessing-bismillah {
+  transition-delay: 0.05s;
+}
+
+.blessing-reveal.visible .blessing-arabic {
+  transition-delay: 0.14s;
+}
+
+.blessing-reveal.visible .blessing-translation {
+  transition-delay: 0.24s;
+}
+
+.blessing-reveal.visible .blessing-reference {
+  transition-delay: 0.32s;
+}
+
 .hero-content {
   --hero-card-delay: 0s;
   --hero-title-delay: 2.6s;
@@ -878,16 +905,16 @@ body.intro-complete .hero-content .hero-actions {
   animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
 }
 
-body.intro-complete.hero-scroll-ready .hero-scroll-cue {
+body.intro-finished.hero-scroll-ready .hero-scroll-cue {
   pointer-events: auto;
   animation: heroScrollCueReveal 0.55s cubic-bezier(0.2, 0.82, 0.2, 1) forwards;
 }
 
-body.intro-complete.hero-scroll-ready .hero-scroll-line {
+body.intro-finished.hero-scroll-ready .hero-scroll-line {
   animation: heroScrollLineGlow 2.2s ease-in-out 0.45s infinite;
 }
 
-body.intro-complete.hero-scroll-ready .hero-scroll-arrow {
+body.intro-finished.hero-scroll-ready .hero-scroll-arrow {
   animation: heroScrollArrowDrop 2.2s cubic-bezier(0.22, 0.78, 0.2, 1) 0.45s infinite;
 }
 
@@ -1893,6 +1920,39 @@ h1 {
     inset 0 1px 0 rgba(255, 255, 255, 0.62);
 }
 
+.moments-form.reveal .moments-copy,
+.moments-form.reveal .moments-note-list,
+.moments-form.reveal .privacy-note,
+.moments-form.reveal .moments-submit {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.moments-form.reveal.visible .moments-copy,
+.moments-form.reveal.visible .moments-note-list,
+.moments-form.reveal.visible .privacy-note,
+.moments-form.reveal.visible .moments-submit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.moments-form.reveal.visible .moments-copy {
+  transition-delay: 0.06s;
+}
+
+.moments-form.reveal.visible .moments-note-list {
+  transition-delay: 0.16s;
+}
+
+.moments-form.reveal.visible .privacy-note {
+  transition-delay: 0.24s;
+}
+
+.moments-form.reveal.visible .moments-submit {
+  transition-delay: 0.32s;
+}
+
 .moments-copy {
   display: grid;
   gap: 0.55rem;
@@ -2831,14 +2891,14 @@ h1 {
     animation: none !important;
   }
 
-  body.intro-complete .hero-scroll-cue {
+  body.intro-finished .hero-scroll-cue {
     opacity: 0.82;
     visibility: visible;
     transform: translate(-50%, 0);
   }
 
-  body.intro-complete .hero-scroll-line,
-  body.intro-complete .hero-scroll-arrow {
+  body.intro-finished .hero-scroll-line,
+  body.intro-finished .hero-scroll-arrow {
     opacity: 1;
   }
 }
