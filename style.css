@@ -693,7 +693,7 @@ body.intro-active .hero-content>* {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("watercolor-hero2.png") center 60% / cover no-repeat;
+  background: url("watercolor-hero2.png") center 30% / cover no-repeat;
   opacity: 0.26;
   /* control image opacity here */
   z-index: -1;
@@ -2495,7 +2495,7 @@ h1 {
   }
 
   .menu-toggle {
-    display: inline-flex;
+    display: none;
   }
 
   .site-nav {

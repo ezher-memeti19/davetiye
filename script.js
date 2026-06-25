@@ -29,6 +29,8 @@ const translations = {
     copy_event: "Copy Event Details",
     event_flow: "Event Flow",
     add_to_calendar: "Add to Calendar",
+    calendar_title: "Eda & Ezher Wedding",
+    calendar_description: "Wedding celebration of Eda and Ezher.",
     schedule_title: "Program for August 3, 2026",
     s1_title: "Nikah Ceremony",
     s1_desc: "Nikah ceremony begins at Restaurant Ajka.",
@@ -117,6 +119,8 @@ const translations = {
     copy_event: "Etkinlik Bilgilerini Kopyala",
     event_flow: "Gün Akışı",
     add_to_calendar: "Takvime Ekle",
+    calendar_title: "Eda ve Ezher'in Düğünü",
+    calendar_description: "Eda ve Ezher'in düğünü.",
     schedule_title: "3 Ağustos 2026 Programı",
     s1_title: "Nikah Töreni",
     s1_desc: "Nikah töreni saat 18:00'de Restaurant Ajka'da başlar.",
@@ -206,6 +210,8 @@ const translations = {
     copy_event: "Kopjo Detajet",
     event_flow: "Rrjedha e Ditës",
     add_to_calendar: "Shto në Kalendar",
+    calendar_title: "Dasma e Eda dhe Ezherit",
+    calendar_description: "Dasma së Eda dhe Ezherit.",
     schedule_title: "Programi për 3 Gusht 2026",
     s1_title: "Ceremonia e Nikahut",
     s1_desc: "Ceremonia e nikahut fillon në ora 18:00 në Restaurant Ajka.",
@@ -643,6 +649,7 @@ function escapeIcs(text) {
 }
 
 function downloadCalendarFile() {
+  const dict = translations[currentLang] || translations.en;
   const start = new Date("2026-08-03T18:00:00+02:00");
   const end = new Date("2026-08-03T23:00:00+02:00");
   const stamp = formatIcsDate(new Date());
@@ -658,9 +665,9 @@ function downloadCalendarFile() {
     `DTSTAMP:${stamp}`,
     `DTSTART:${formatIcsDate(start)}`,
     `DTEND:${formatIcsDate(end)}`,
-    `SUMMARY:${escapeIcs("Eda & Ezher Wedding")}`,
+    `SUMMARY:${escapeIcs(dict.calendar_title)}`,
     `LOCATION:${escapeIcs("Kalkandelen")}`,
-    `DESCRIPTION:${escapeIcs("Wedding celebration of Eda and Ezher.")}`,
+    `DESCRIPTION:${escapeIcs(dict.calendar_description)}`,
     "END:VEVENT",
     "END:VCALENDAR"
   ].join("\r\n");
