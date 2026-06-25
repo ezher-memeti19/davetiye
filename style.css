@@ -694,7 +694,7 @@ body.intro-active .hero-content>* {
   position: absolute;
   inset: 0;
   background: url("watercolor-hero2.png") center 60% / cover no-repeat;
-  opacity: 0.2;
+  opacity: 0.26;
   /* control image opacity here */
   z-index: -1;
 }
