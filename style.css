@@ -1334,8 +1334,12 @@ h1 {
   padding-bottom: 0.16em;
   overflow: visible;
   white-space: nowrap;
-  display: inline-block;
+  position: relative;
+  display: grid;
+  width: max-content;
   max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .hero-content h1 {
@@ -1347,6 +1351,24 @@ h1 {
 }
 
 .hero-content h1.is-writing::after {
+  display: none;
+}
+
+.hero-title-ghost {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.hero-title-live {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.hero-content h1.is-writing .hero-title-live::after {
   content: "";
   display: inline-block;
   width: 2px;
@@ -1366,6 +1388,12 @@ h1 {
   will-change: auto;
   opacity: 0;
   animation: heroNameCharIn 0.92s cubic-bezier(0.22, 0.8, 0.2, 1) forwards;
+}
+
+.hero-name-char.is-static {
+  opacity: 1;
+  transform: none;
+  animation: none;
 }
 
 .hero-name-char.is-space {

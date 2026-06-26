@@ -443,9 +443,37 @@ function stopHeroTitleWriting() {
   window.clearTimeout(stopHeroTitleWriting.stepTimeoutId);
 }
 
-function createHeroTitleChar(char) {
+function getHeroTitleLayers() {
+  if (!heroTitleEl) return {};
+
+  let ghostEl = heroTitleEl.querySelector(".hero-title-ghost");
+  let liveEl = heroTitleEl.querySelector(".hero-title-live");
+
+  if (!ghostEl || !liveEl) {
+    heroTitleEl.replaceChildren();
+    ghostEl = document.createElement("span");
+    ghostEl.className = "hero-title-ghost";
+    ghostEl.setAttribute("aria-hidden", "true");
+
+    liveEl = document.createElement("span");
+    liveEl.className = "hero-title-live";
+    liveEl.setAttribute("aria-hidden", "true");
+
+    heroTitleEl.append(ghostEl, liveEl);
+  }
+
+  ghostEl.textContent = heroTitleText;
+  liveEl.replaceChildren();
+  return { ghostEl, liveEl };
+}
+
+function createHeroTitleChar(char, { animate = true } = {}) {
   const charEl = document.createElement("span");
   charEl.className = "hero-name-char";
+
+  if (!animate) {
+    charEl.classList.add("is-static");
+  }
 
   if (char === " ") {
     charEl.classList.add("is-space");
@@ -467,13 +495,14 @@ function renderHeroTitle({ animate = false, delay = 0 } = {}) {
   stopHeroTitleWriting();
   heroTitleEl.classList.remove("is-writing");
   heroTitleEl.setAttribute("aria-label", heroTitleText);
+  const { liveEl } = getHeroTitleLayers();
+  if (!liveEl) return;
 
   if (!animate) {
-    heroTitleEl.replaceChildren(...Array.from(heroTitleText, createHeroTitleChar));
+    liveEl.replaceChildren(...Array.from(heroTitleText, (char) => createHeroTitleChar(char, { animate: false })));
     return;
   }
 
-  heroTitleEl.replaceChildren();
   heroTitleEl.classList.add("is-writing");
   const chars = Array.from(heroTitleText);
 
@@ -481,7 +510,7 @@ function renderHeroTitle({ animate = false, delay = 0 } = {}) {
     let index = 0;
 
     const writeNextCharacter = () => {
-      heroTitleEl.appendChild(createHeroTitleChar(chars[index]));
+      liveEl.appendChild(createHeroTitleChar(chars[index]));
       index += 1;
 
       if (index < chars.length) {
