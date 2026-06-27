@@ -273,7 +273,7 @@ const translations = {
     message: "Mesazh",
     message_placeholder: "Keni një shënim për çiftin?",
     send_rsvp: "Dërgo RSVP",
-    footer_text: "Prania juaj do të jetë bekim për çiftin e ri dhe nder dhe gëzim për familjet Memeti & Abdulla.",
+    footer_text: "Prania juaj do të jetë bekim për çiftin e ri dhe nder dhe gëzim për familjet Memeti & Abdula.",
     copy_details_text: "Dasma e Eda dhe Ezher - 3 Gusht 2026 në 18:00, Kalkandelen",
     toast_copy_success: "Detajet u kopjuan.",
     toast_copy_fail: "Kopjimi dështoi në këtë shfletues.",
