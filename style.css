@@ -1309,6 +1309,34 @@ body.intro-finished.hero-scroll-ready .hero-scroll-arrow {
   opacity: 0.72;
 }
 
+.hero-meta-row {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+  color: rgba(83, 92, 57, 0.88);
+  font-family: "Fraunces", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.hero-meta-divider {
+  opacity: 0.55;
+}
+
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.22em;
@@ -2551,6 +2579,14 @@ h1 {
 
   .hero-family-group {
     gap: 0.3rem;
+  }
+
+  .hero-meta-row {
+    gap: 0.5rem;
+    margin-top: 0.62rem;
+    margin-bottom: 0.62rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
   }
 
   .hero-subtitle {

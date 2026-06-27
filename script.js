@@ -14,12 +14,14 @@ const translations = {
     nav_venues: "Venues",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Wedding Invitation",
+    hero_title: "Eda & Ezher",
     hero_family_left: "Abdula Family",
     hero_family_right: "Memeti Family",
     hero_subtitle: "Tetovo",
     blessing_translation: "“May Allah bless you both, shower His blessings upon you, and unite you together in goodness.”",
     blessing_reference: "Prophetic Hadith ﷺ",
     hero_date_label: "Wedding Date",
+    hero_weekday: "MONDAY",
     date_day: "Day",
     date_month: "Month",
     date_year: "Year",
@@ -67,8 +69,10 @@ const translations = {
     venue_type_ceremony: "Ceremony",
     venue_type_reception: "Reception",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "We will be delighted to welcome our female guests at Restaurant Ajka on this special day.",
-    venue_desc_2: "We look forward to sharing this special day with our male guests at Restaurant Shaza.",
+    venue_audience_1: "For women:",
+    venue_audience_2: "For men:",
+    venue_desc_1: "Restaurant \"Ajka\" – Leshkë, Tetovë",
+    venue_desc_2: "Restaurant \"Shaza\" – Leshkë, Tetovë",
     venue_desc_3: "A rooftop evening of music, laughter, and dancing under the lights.",
     venue_label_time: "Time",
     venue_label_location: "Location",
@@ -84,7 +88,7 @@ const translations = {
     message: "Message",
     message_placeholder: "Any note for the couple?",
     send_rsvp: "Send RSVP",
-    footer_text: "Memeti Family & Abdula Family",
+    footer_text: "Your presence will be a blessing for the newlyweds and a joy and honor for the Abdula & Memeti families.",
     copy_details_text: "Eda & Ezher Wedding - August 3, 2026 at 19:30, Kalkandelen",
     toast_copy_success: "Event details copied.",
     toast_copy_fail: "Copy failed on this browser.",
@@ -107,12 +111,14 @@ const translations = {
     nav_venues: "Mekanlar",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Düğün Davetiyesi",
+    hero_title: "Eda & Ezher",
     hero_family_left: "Abdula Ailesi",
     hero_family_right: "Memeti Ailesi",
     hero_subtitle: "Kalkandelen",
     blessing_translation: "“Allah sizlere bereket versin, üzerinize bereket indirsin ve sizi her hayırda bir araya getirsin.”",
     blessing_reference: "Peygamber Efendimiz ﷺ'in Hadisi",
     hero_date_label: "Düğün Tarihi",
+    hero_weekday: "PAZARTESİ",
     date_day: "Gün",
     date_month: "Ay",
     date_year: "Yıl",
@@ -161,8 +167,10 @@ const translations = {
     venue_type_ceremony: "Tören",
     venue_type_reception: "Resepsiyon",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "Bu özel günümüzde siz değerli KADIN misafirlerimizi “Restaurant Ajka”da ağırlamaktan mutluluk duyacağız.",
-    venue_desc_2: "Bu anlamlı günümüzü siz değerli ERKEK misafirlerimizle Restaurant Shaza'da paylaşmaktan bahtiyarlık/memnuniyet duyacağız.",
+    venue_audience_1: "Kadınlar için:",
+    venue_audience_2: "Erkekler için:",
+    venue_desc_1: "Restoran \"Ajka\" – Leşka, Kalkandelen",
+    venue_desc_2: "Restoran \"Shaza\" – Leşka, Kalkandelen",
     venue_desc_3: "Işıklar altında müzik, gülüş ve dans dolu bir çatı gecesi.",
     venue_label_time: "Saat",
     venue_label_location: "Mekan",
@@ -178,7 +186,7 @@ const translations = {
     message: "Mesaj",
     message_placeholder: "Çift için bir notunuz var mı?",
     send_rsvp: "RSVP Gönder",
-    footer_text: "Memeti Ailesi & Abdula Ailesi",
+    footer_text: "Varlığınız genç çift için bir bereket, Abdula ve Memeti aileleri için ise onur ve mutluluk olacaktır.",
     copy_details_text: "Eda ve Ezher Düğünü - 3 Ağustos 2026, 19:30, Kalkandelen",
     toast_copy_success: "Etkinlik bilgileri kopyalandı.",
     toast_copy_fail: "Bu tarayıcıda kopyalama başarısız.",
@@ -201,12 +209,14 @@ const translations = {
     nav_venues: "Lokacionet",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Ftesë Dasme",
-    hero_family_left: "Familja Abdula",
-    hero_family_right: "Familja Memeti",
+    hero_title: "Ezher & Eda",
+    hero_family_left: "Familja Memeti",
+    hero_family_right: "Familja Abdula",
     hero_subtitle: "Tetovë",
     blessing_translation: "“Allahu ju bekoftë, ju dhëntë bereqet dhe ju bashkoftë në çdo të mirë.”",
     blessing_reference: "Hadith Profetik ﷺ",
     hero_date_label: "Data e Dasmës",
+    hero_weekday: "E HËNË",
     date_day: "Dita",
     date_month: "Muaji",
     date_year: "Viti",
@@ -256,8 +266,10 @@ const translations = {
     venue_type_ceremony: "Ceremonia",
     venue_type_reception: "Resepsioni",
     venue_type_afterparty: "After Party",
-    venue_desc_1: "Do të kemi kënaqësinë t’i mirëpresim gratë në Restaurant Ajka në këtë ditë të veçantë.",
-    venue_desc_2: "Me kënaqësi do ta ndajmë këtë ditë të veçantë me burrat në Restaurant Shaza.",
+    venue_audience_1: "Për gratë:",
+    venue_audience_2: "Për burrat:",
+    venue_desc_1: "Restorant \"Ajka\" – Leshkë, Tetovë",
+    venue_desc_2: "Restorant \"Shaza\" – Leshkë, Tetovë",
     venue_desc_3: "Një mbrëmje në rooftop me muzikë, të qeshura dhe valle.",
     venue_label_time: "Ora",
     venue_label_location: "Vendndodhja",
@@ -425,7 +437,6 @@ const sealButton = document.getElementById("sealButton");
 let introBranch = document.querySelector(".intro-branch");
 const heroTitleEl = document.querySelector(".hero-content h1");
 const heroTextEl = document.querySelector(".hero-text");
-const heroTitleText = (heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
 const HERO_SEQUENCE = {
   cardDelay: 2.18,
   titleDelay: 2.6
@@ -441,6 +452,11 @@ const dateCardEls = {
 function stopHeroTitleWriting() {
   window.clearTimeout(stopHeroTitleWriting.startTimeoutId);
   window.clearTimeout(stopHeroTitleWriting.stepTimeoutId);
+}
+
+function getHeroTitleText(lang = currentLang) {
+  const dict = translations[lang] || translations.en;
+  return (dict.hero_title || heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
 }
 
 function getHeroTitleLayers() {
@@ -462,7 +478,7 @@ function getHeroTitleLayers() {
     heroTitleEl.append(ghostEl, liveEl);
   }
 
-  ghostEl.textContent = heroTitleText;
+  ghostEl.textContent = getHeroTitleText();
   liveEl.replaceChildren();
   return { ghostEl, liveEl };
 }
@@ -494,6 +510,7 @@ function renderHeroTitle({ animate = false, delay = 0 } = {}) {
 
   stopHeroTitleWriting();
   heroTitleEl.classList.remove("is-writing");
+  const heroTitleText = getHeroTitleText();
   heroTitleEl.setAttribute("aria-label", heroTitleText);
   const { liveEl } = getHeroTitleLayers();
   if (!liveEl) return;
@@ -752,6 +769,7 @@ function applyLanguage(lang) {
 
   currentLang = lang;
   localStorage.setItem("wedding_lang", lang);
+  renderHeroTitle();
   renderHeroText(dict.hero_text);
   updateSeoLinks(lang);
 }
