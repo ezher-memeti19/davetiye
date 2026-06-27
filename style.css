@@ -832,8 +832,15 @@ body.intro-active .hero-content>* {
 .hero-content {
   --hero-card-delay: 0s;
   --hero-title-delay: 2.6s;
-  --hero-family-delay: 5s;
-  --hero-after-title-delay: 2.6s;
+  --hero-ornament-top-delay: 4.74s;
+  --hero-family-delay: 4.84s;
+  --hero-copy-delay: 4.94s;
+  --hero-ornament-mid-delay: 5.04s;
+  --hero-date-delay: 5.14s;
+  --hero-meta-delay: 5.24s;
+  --hero-city-delay: 5.34s;
+  --hero-ornament-bottom-delay: 5.44s;
+  --hero-actions-delay: 5.54s;
   position: relative;
   z-index: 1;
   text-align: center;
@@ -885,31 +892,47 @@ body.intro-complete .hero-content>* {
 }
 
 body.intro-complete .hero-content .eyebrow {
-  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) 2.48s forwards;
 }
 
 body.intro-complete .hero-content h1 {
   animation-delay: var(--hero-title-delay);
 }
 
+body.intro-complete .hero-content .hero-ornament-top {
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-ornament-top-delay) forwards;
+}
+
 body.intro-complete .hero-content .hero-family {
-  animation: heroCopyLinear 1.45s linear var(--hero-family-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-family-delay) forwards;
 }
 
 body.intro-complete .hero-content .hero-text {
-  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-copy-delay) forwards;
+}
+
+body.intro-complete .hero-content .hero-ornament-mid {
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-ornament-mid-delay) forwards;
 }
 
 body.intro-complete .hero-content .countdown-wrap {
-  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-date-delay) forwards;
+}
+
+body.intro-complete .hero-content .hero-meta-row {
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-meta-delay) forwards;
 }
 
 body.intro-complete .hero-content .hero-subtitle {
-  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-city-delay) forwards;
+}
+
+body.intro-complete .hero-content .hero-ornament-bottom {
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-ornament-bottom-delay) forwards;
 }
 
 body.intro-complete .hero-content .hero-actions {
-  animation: heroCopyLinear 1.45s linear var(--hero-after-title-delay) forwards;
+  animation: heroCopyLinear 1.12s cubic-bezier(0.22, 0.78, 0.2, 1) var(--hero-actions-delay) forwards;
 }
 
 body.intro-finished.hero-scroll-ready .hero-scroll-cue {
@@ -1286,16 +1309,16 @@ body.intro-finished.hero-scroll-ready .hero-scroll-arrow {
 }
 
 .hero-family {
-  margin-top: 0.28rem;
+  margin-top: 0.46rem;
   font-family: "Fraunces", serif;
   font-size: clamp(0.92rem, 1.55vw, 1.08rem);
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(83, 92, 57, 0.78);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 1.45rem;
+  gap: 1.7rem;
   flex-wrap: wrap;
 }
 
@@ -1309,32 +1332,122 @@ body.intro-finished.hero-scroll-ready .hero-scroll-arrow {
   opacity: 0.72;
 }
 
+.hero-ornament {
+  width: min(168px, 38%);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(83, 92, 57, 0.42);
+}
+
+.hero-ornament::before,
+.hero-ornament::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor 52%, transparent);
+}
+
+.hero-ornament-mark {
+  position: relative;
+  width: 1.3rem;
+  height: 0.7rem;
+  margin: 0 0.52rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-ornament-mark::before,
+.hero-ornament-mark::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 0.48rem;
+  height: 0.28rem;
+  border: 1px solid currentColor;
+  border-radius: 100% 0;
+}
+
+.hero-ornament-mark::before {
+  left: 0.18rem;
+  transform: translateY(-60%) rotate(-28deg);
+}
+
+.hero-ornament-mark::after {
+  right: 0.18rem;
+  transform: translateY(-42%) rotate(152deg);
+}
+
+.hero-ornament-top {
+  margin-top: 0.34rem;
+}
+
+.hero-ornament-mid {
+  margin-top: 1.3rem;
+  margin-bottom: 0.22rem;
+  width: min(152px, 34%);
+  color: rgba(83, 92, 57, 0.32);
+}
+
+.hero-ornament-bottom {
+  margin-top: 0.9rem;
+  margin-bottom: 0.06rem;
+  width: min(132px, 30%);
+  color: rgba(83, 92, 57, 0.28);
+}
+
 .hero-meta-row {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  margin-top: 0.7rem;
-  margin-bottom: 0.7rem;
+  gap: 0.82rem;
+  margin-top: 1.1rem;
+  margin-bottom: 1.15rem;
   color: rgba(83, 92, 57, 0.88);
-  font-family: "Fraunces", serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-align: center;
-  flex-wrap: wrap;
+  white-space: nowrap;
 }
 
 .hero-meta-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
+  gap: 0.42rem;
+}
+
+.hero-meta-item:last-child {
+  font-weight: 700;
+}
+
+.hero-meta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.92rem;
+  height: 0.92rem;
+  color: rgba(83, 92, 57, 0.7);
+}
+
+.hero-meta-icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .hero-meta-divider {
-  opacity: 0.55;
+  opacity: 0.42;
+  font-size: 0.9em;
 }
 
 .eyebrow {
@@ -1456,16 +1569,18 @@ h1 {
 }
 
 .hero-subtitle {
-  margin-top: 1rem;
-  font-size: 1.05rem;
-  color: var(--muted);
+  margin-top: 1.38rem;
+  font-size: 1.12rem;
+  color: rgba(83, 92, 57, 0.82);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
 .countdown-wrap {
-  margin: 1rem auto 0;
+  margin: 1.45rem auto 0;
   display: grid;
   justify-items: center;
-  gap: 0.32rem;
+  gap: 0.42rem;
   width: 100%;
   padding: 0.22rem 0.34rem;
   border-radius: 14px;
@@ -1473,7 +1588,7 @@ h1 {
 
 .countdown-kicker {
   font-size: 0.52rem;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--tertiary);
   opacity: 0.82;
@@ -1590,7 +1705,7 @@ h1 {
 }
 
 .hero-actions {
-  margin-top: 2rem;
+  margin-top: 1.55rem;
   display: flex;
   gap: 0.8rem;
   justify-content: center;
@@ -2564,38 +2679,67 @@ h1 {
   }
 
   .hero-text {
-    margin-top: 0.72rem;
+    margin-top: 0.92rem;
     font-size: clamp(1.02rem, 4.6vw, 1.22rem);
-    line-height: 1.34;
+    line-height: 1.46;
     min-height: 3.2rem;
+    max-width: 26rem;
+    margin-inline: auto;
   }
 
   .hero-family {
-    margin-top: 0.18rem;
+    margin-top: 0.32rem;
     font-size: clamp(0.74rem, 2.8vw, 0.88rem);
-    letter-spacing: 0.14em;
-    gap: 1rem;
+    letter-spacing: 0.16em;
+    gap: 1.12rem;
   }
 
   .hero-family-group {
     gap: 0.3rem;
   }
 
+  .hero-ornament {
+    width: min(142px, 48%);
+  }
+
+  .hero-ornament-top {
+    margin-top: 0.26rem;
+  }
+
+  .hero-ornament-mid {
+    margin-top: 1.1rem;
+    width: min(126px, 42%);
+  }
+
+  .hero-ornament-bottom {
+    margin-top: 0.78rem;
+    width: min(110px, 36%);
+  }
+
   .hero-meta-row {
-    gap: 0.5rem;
-    margin-top: 0.62rem;
-    margin-bottom: 0.62rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
+    gap: 0.48rem;
+    margin-top: 0.96rem;
+    margin-bottom: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+  }
+
+  .hero-meta-item {
+    gap: 0.3rem;
+  }
+
+  .hero-meta-icon {
+    width: 0.82rem;
+    height: 0.82rem;
   }
 
   .hero-subtitle {
-    margin-top: 0.72rem;
-    font-size: 0.94rem;
+    margin-top: 1.12rem;
+    font-size: 0.98rem;
   }
 
   .hero-actions {
-    margin-top: 1.1rem;
+    margin-top: 1.32rem;
     gap: 0.55rem;
   }
 
