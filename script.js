@@ -242,7 +242,7 @@ const translations = {
     venues_eyebrow: "Adresat",
     // Albanian
     share_moments_eyebrow: "Ndani Kujtimet Tuaja",
-    moments_title: "Le T’i Plotësojmë\nKujtimet Tona Së Bashku",
+    moments_title: "Le ti plotësojmë\nkujtimet tona së bashku",
     moments_kicker: "",
     moments_lead: "Ndani me ne fotografitë dhe videot që keni realizuar gjatë ditës sonë të dasmës.",
     // moments_subheader: "Le t’i shtojmë kujtimet tona në këtë ditë të veçantë",

@@ -1993,6 +1993,8 @@ h1 {
 
 .venue-actions {
   padding-top: 0.1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .venue-link {
