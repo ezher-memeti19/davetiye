@@ -5,6 +5,8 @@
   "description": "Wedding invitation site with private Dropbox photo upload",
   "main": "server.js",
   "scripts": {
+    "dev": "vercel dev",
+    "local": "node server.js",
     "start": "node server.js"
   },
   "engines": {
