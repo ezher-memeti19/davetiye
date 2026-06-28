@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    meta_description: "Join us for the wedding celebration of Eda and Ezher on August 3, 2026.",
+    meta_description: "Join us for the wedding celebration of Eda and Ez'her on August 3, 2026.",
     open_invitation: "Open invitation",
     tap_to_open: "Tap to open",
     language_label: "Language",
@@ -14,7 +14,7 @@ const translations = {
     nav_venues: "Venues",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Wedding Invitation",
-    hero_title: "Eda & Ezher",
+    hero_title: "Eda & Ez'her",
     hero_family_left: "Abdula Family",
     hero_family_right: "Memeti Family",
     hero_subtitle: "Tetovo",
@@ -33,8 +33,8 @@ const translations = {
     copy_event: "Copy Event Details",
     event_flow: "Event Flow",
     add_to_calendar: "Add to Calendar",
-    calendar_title: "Eda & Ezher Wedding",
-    calendar_description: "Wedding celebration of Eda and Ezher.",
+    calendar_title: "Eda & Ez'her Wedding",
+    calendar_description: "Wedding celebration of Eda and Ez'her.",
     schedule_title: "Program for August 3, 2026",
     s1_title: "Nikah Ceremony",
     s1_desc: "Nikah ceremony begins at Restaurant Ajka.",
@@ -89,7 +89,7 @@ const translations = {
     message_placeholder: "Any note for the couple?",
     send_rsvp: "Send RSVP",
     footer_text: "Your presence will be a blessing for the newlyweds and a joy and honor for the Abdula & Memeti families.",
-    copy_details_text: "Eda & Ezher Wedding - August 3, 2026 at 19:30, Kalkandelen",
+    copy_details_text: "Eda & Ez'her Wedding - August 3, 2026 at 19:30, Kalkandelen",
     toast_copy_success: "Event details copied.",
     toast_copy_fail: "Copy failed on this browser.",
     toast_rsvp_saved: "Thanks. Your RSVP has been saved.",
@@ -97,7 +97,7 @@ const translations = {
     toast_moments_saved: "Thank you. Your photos were sent privately."
   },
   tr: {
-    meta_description: "Eda ve Ezher'in 3 Ağustos 2026 tarihindeki düğün kutlamasına davetlisiniz.",
+    meta_description: "Eda ve Ez'her'in 3 Ağustos 2026 tarihindeki düğün kutlamasına davetlisiniz.",
     open_invitation: "Daveti aç",
     tap_to_open: "Açmak için dokunun",
     language_label: "Dil",
@@ -111,7 +111,7 @@ const translations = {
     nav_venues: "Mekanlar",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Düğün Davetiyesi",
-    hero_title: "Eda & Ezher",
+    hero_title: "Eda & Ez'her",
     hero_family_left: "Abdula Ailesi",
     hero_family_right: "Memeti Ailesi",
     hero_subtitle: "Kalkandelen",
@@ -130,8 +130,8 @@ const translations = {
     copy_event: "Etkinlik Bilgilerini Kopyala",
     event_flow: "Gün Akışı",
     add_to_calendar: "Takvime Ekle",
-    calendar_title: "Eda ve Ezher'in Düğünü",
-    calendar_description: "Eda ve Ezher'in düğünü.",
+    calendar_title: "Eda ve Ez'her'in Düğünü",
+    calendar_description: "Eda ve Ez'her'in düğünü.",
     schedule_title: "3 Ağustos 2026 Programı",
     s1_title: "Nikah Töreni",
     s1_desc: "Nikah töreni saat 18:00'de Restaurant Ajka'da başlar.",
@@ -187,7 +187,7 @@ const translations = {
     message_placeholder: "Çift için bir notunuz var mı?",
     send_rsvp: "RSVP Gönder",
     footer_text: "Varlığınız genç çift için bir bereket, Abdula ve Memeti aileleri için ise onur ve mutluluk olacaktır.",
-    copy_details_text: "Eda ve Ezher Düğünü - 3 Ağustos 2026, 19:30, Kalkandelen",
+    copy_details_text: "Eda ve Ez'her Düğünü - 3 Ağustos 2026, 19:30, Kalkandelen",
     toast_copy_success: "Etkinlik bilgileri kopyalandı.",
     toast_copy_fail: "Bu tarayıcıda kopyalama başarısız.",
     toast_rsvp_saved: "Teşekkürler. RSVP kaydedildi.",
@@ -195,7 +195,7 @@ const translations = {
     toast_moments_saved: "Teşekkürler. Fotoğraflarınız bize özel olarak gönderildi."
   },
   al: {
-    meta_description: "Ju ftojmë në festimin e dasmës së Eda dhe Ezher më 3 Gusht 2026.",
+    meta_description: "Ju ftojmë në festimin e dasmës së Eda dhe Ez'her më 3 Gusht 2026.",
     open_invitation: "Hap ftesën",
     tap_to_open: "Prek për të hapur",
     language_label: "Gjuha",
@@ -209,7 +209,7 @@ const translations = {
     nav_venues: "Lokacionet",
     nav_rsvp: "RSVP",
     hero_eyebrow: "Ftesë Dasme",
-    hero_title: "Ezher & Eda",
+    hero_title: "Ez'her & Eda",
     hero_family_left: "Familja Memeti",
     hero_family_right: "Familja Abdula",
     hero_subtitle: "Tetovë",
@@ -228,8 +228,8 @@ const translations = {
     copy_event: "Kopjo Detajet",
     event_flow: "Rrjedha e Ditës",
     add_to_calendar: "Shto në Kalendar",
-    calendar_title: "Dasma e Eda dhe Ezherit",
-    calendar_description: "Dasma së Eda dhe Ezherit.",
+    calendar_title: "Dasma e Eda dhe Ez'herit",
+    calendar_description: "Dasma së Eda dhe Ez'herit.",
     schedule_title: "Programi për 3 Gusht 2026",
     s1_title: "Ceremonia e Nikahut",
     s1_desc: "Ceremonia e nikahut fillon në ora 18:00 në Restaurant Ajka.",
@@ -286,7 +286,7 @@ const translations = {
     message_placeholder: "Keni një shënim për çiftin?",
     send_rsvp: "Dërgo RSVP",
     footer_text: "Prania juaj do të jetë bekim për çiftin e ri dhe nder dhe gëzim për familjet Memeti & Abdula.",
-    copy_details_text: "Dasma e Eda dhe Ezher - 3 Gusht 2026 në 18:00, Kalkandelen",
+    copy_details_text: "Dasma e Eda dhe Ez'her - 3 Gusht 2026 në 18:00, Kalkandelen",
     toast_copy_success: "Detajet u kopjuan.",
     toast_copy_fail: "Kopjimi dështoi në këtë shfletues.",
     toast_rsvp_saved: "Faleminderit. RSVP u ruajt.",
@@ -456,7 +456,7 @@ function stopHeroTitleWriting() {
 
 function getHeroTitleText(lang = currentLang) {
   const dict = translations[lang] || translations.en;
-  return (dict.hero_title || heroTitleEl?.textContent || "Eda & Ezher").replace(/\s+/g, " ").trim();
+  return (dict.hero_title || heroTitleEl?.textContent || "Eda & Ez'her").replace(/\s+/g, " ").trim();
 }
 
 function getHeroTitleLayers() {
@@ -742,7 +742,7 @@ function downloadCalendarFile() {
 function applyLanguage(lang) {
   const dict = translations[lang] || translations.en;
   document.documentElement.lang = HREFLANGS[lang] || "en";
-  document.title = `Eda & Ezher | ${dict.hero_eyebrow}`;
+  document.title = `Eda & Ez'her | ${dict.hero_eyebrow}`;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
