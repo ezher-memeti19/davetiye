@@ -1,5 +1,14 @@
 {
   "rewrites": [
+    { "source": "/v:version", "destination": "/index.html" },
+    { "source": "/v:version/:lang", "destination": "/index.html" },
+    { "source": "/v:version/:lang/:path*", "destination": "/index.html" },
+    { "source": "/v1/en", "destination": "/index.html" },
+    { "source": "/v1/tr", "destination": "/index.html" },
+    { "source": "/v1/al", "destination": "/index.html" },
+    { "source": "/v1/en/:path*", "destination": "/index.html" },
+    { "source": "/v1/tr/:path*", "destination": "/index.html" },
+    { "source": "/v1/al/:path*", "destination": "/index.html" },
     { "source": "/en", "destination": "/index.html" },
     { "source": "/tr", "destination": "/index.html" },
     { "source": "/al", "destination": "/index.html" },

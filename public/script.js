@@ -296,6 +296,7 @@ const translations = {
 };
 
 const SUPPORTED_LANGS = ["en", "tr", "al"];
+const SUPPORTED_VARIANTS = ["default", "v1"];
 const HREFLANGS = {
   en: "en",
   tr: "tr",
@@ -307,13 +308,65 @@ function normalizeLanguage(lang) {
   return SUPPORTED_LANGS.includes(lang) ? lang : null;
 }
 
+function normalizeVariant(variant) {
+  return SUPPORTED_VARIANTS.includes(variant) ? variant : null;
+}
+
 function getPathSegments(pathname = window.location.pathname) {
   return pathname.replace(/^\/+|\/+$/g, "").split("/").filter(Boolean);
 }
 
-function getLanguageFromPath(pathname = window.location.pathname) {
-  const [firstSegment] = getPathSegments(pathname);
-  return normalizeLanguage(firstSegment);
+function buildRoutePath({ lang, variant = "default", tail = [] }) {
+  const normalizedLang = normalizeLanguage(lang) || "en";
+  const normalizedVariant = normalizeVariant(variant) || "default";
+  const normalizedTail = Array.isArray(tail) ? tail.filter(Boolean) : [];
+  const baseSegments = normalizedVariant === "v1" ? ["v1", normalizedLang] : [normalizedLang];
+  return `/${[...baseSegments, ...normalizedTail].join("/")}`;
+}
+
+function getRouteContext(pathname = window.location.pathname) {
+  const segments = getPathSegments(pathname);
+  const [firstSegment, secondSegment, ...restSegments] = segments;
+
+  if (segments.length === 0) {
+    return { variant: "default", lang: null, tail: [], redirect: null };
+  }
+
+  const directLang = normalizeLanguage(firstSegment);
+  if (directLang) {
+    return { variant: "default", lang: directLang, tail: [secondSegment, ...restSegments].filter(Boolean), redirect: null };
+  }
+
+  if (firstSegment === "v1") {
+    const versionedLang = normalizeLanguage(secondSegment);
+    if (versionedLang) {
+      return { variant: "v1", lang: versionedLang, tail: restSegments, redirect: null };
+    }
+
+    return {
+      variant: "v1",
+      lang: null,
+      tail: restSegments,
+      redirect: buildRoutePath({ variant: "v1", lang: "en", tail: restSegments })
+    };
+  }
+
+  if (/^v\d+$/i.test(firstSegment)) {
+    const fallbackLang = normalizeLanguage(secondSegment) || "en";
+    return {
+      variant: "default",
+      lang: null,
+      tail: restSegments,
+      redirect: buildRoutePath({ variant: "default", lang: fallbackLang, tail: restSegments })
+    };
+  }
+
+  return {
+    variant: "default",
+    lang: null,
+    tail: [],
+    redirect: buildRoutePath({ variant: "default", lang: "en" })
+  };
 }
 
 function detectBrowserLanguage() {
@@ -331,12 +384,23 @@ function getPreferredLanguage() {
   return savedLanguage || detectBrowserLanguage();
 }
 
-function buildLanguageUrl(lang, { search = window.location.search, hash = window.location.hash } = {}) {
-  return `/${lang}${search}${hash}`;
+function buildLanguageUrl(
+  lang,
+  {
+    variant = currentVariant,
+    search = window.location.search,
+    hash = window.location.hash,
+    tail = currentRouteTail
+  } = {}
+) {
+  return `${buildRoutePath({ lang, variant, tail })}${search}${hash}`;
 }
 
-function navigateToLanguage(lang, { replace = false } = {}) {
-  const targetUrl = buildLanguageUrl(lang);
+function navigateToLanguage(
+  lang,
+  { replace = false, variant = currentVariant, tail = currentRouteTail, forcedPath } = {}
+) {
+  const targetUrl = forcedPath || buildLanguageUrl(lang, { variant, tail });
   if (replace) {
     window.location.replace(targetUrl);
     return;
@@ -345,20 +409,26 @@ function navigateToLanguage(lang, { replace = false } = {}) {
 }
 
 function resolveInitialLanguage() {
-  const pathSegments = getPathSegments();
-  const pathLanguage = getLanguageFromPath();
+  const routeContext = getRouteContext();
 
-  if (pathSegments.length === 0) {
+  if (routeContext.redirect) {
+    navigateToLanguage(routeContext.lang || "en", {
+      replace: true,
+      variant: routeContext.variant,
+      tail: routeContext.tail,
+      forcedPath: routeContext.redirect
+    });
+    return null;
+  }
+
+  if (!routeContext.lang) {
     navigateToLanguage(getPreferredLanguage(), { replace: true });
     return null;
   }
 
-  if (!pathLanguage) {
-    navigateToLanguage("en", { replace: true });
-    return null;
-  }
-
-  return pathLanguage;
+  currentVariant = routeContext.variant;
+  currentRouteTail = routeContext.tail;
+  return routeContext.lang;
 }
 
 function rememberScrollPosition(nextLang) {
@@ -370,7 +440,12 @@ function rememberScrollPosition(nextLang) {
   sessionStorage.setItem(
     SCROLL_RESTORE_KEY,
     JSON.stringify({
-      path: `/${nextLang}${window.location.search}`,
+      path: buildLanguageUrl(nextLang, {
+        variant: currentVariant,
+        search: window.location.search,
+        hash: "",
+        tail: currentRouteTail
+      }),
       scrollY: window.scrollY
     })
   );
@@ -402,7 +477,7 @@ function restoreScrollPosition() {
 
 function updateSeoLinks(lang) {
   const origin = window.location.origin;
-  const canonicalHref = new URL(`/${lang}`, origin).href;
+  const canonicalHref = new URL(buildRoutePath({ lang, variant: currentVariant }), origin).href;
 
   const canonicalLink = document.getElementById("canonicalLink");
   const hreflangEn = document.getElementById("hreflangEn");
@@ -411,12 +486,14 @@ function updateSeoLinks(lang) {
   const hreflangDefault = document.getElementById("hreflangDefault");
 
   if (canonicalLink) canonicalLink.setAttribute("href", canonicalHref);
-  if (hreflangEn) hreflangEn.setAttribute("href", new URL("/en", origin).href);
-  if (hreflangTr) hreflangTr.setAttribute("href", new URL("/tr", origin).href);
-  if (hreflangSq) hreflangSq.setAttribute("href", new URL("/al", origin).href);
+  if (hreflangEn) hreflangEn.setAttribute("href", new URL(buildRoutePath({ lang: "en", variant: currentVariant }), origin).href);
+  if (hreflangTr) hreflangTr.setAttribute("href", new URL(buildRoutePath({ lang: "tr", variant: currentVariant }), origin).href);
+  if (hreflangSq) hreflangSq.setAttribute("href", new URL(buildRoutePath({ lang: "al", variant: currentVariant }), origin).href);
   if (hreflangDefault) hreflangDefault.setAttribute("href", new URL("/en", origin).href);
 }
 
+let currentVariant = "default";
+let currentRouteTail = [];
 const resolvedLanguage = resolveInitialLanguage();
 
 const nav = document.getElementById("nav");
@@ -741,7 +818,10 @@ function downloadCalendarFile() {
 
 function applyLanguage(lang) {
   const dict = translations[lang] || translations.en;
+  const body = document.body;
   document.documentElement.lang = HREFLANGS[lang] || "en";
+  document.documentElement.dataset.variant = currentVariant;
+  body?.classList.toggle("variant-v1", currentVariant === "v1");
   document.title = `Eda & Ez'her | ${dict.hero_eyebrow}`;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {

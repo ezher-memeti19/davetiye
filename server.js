@@ -14,8 +14,10 @@ const { handleUploadMiddlewareError, sendUploadError } = require("./lib/upload-r
 const app = express();
 const staticDir = path.join(__dirname, "public");
 const indexFile = path.join(staticDir, "index.html");
-const supportedLanguageRoute = /^\/(en|tr|al)(?:\/.*)?$/;
+const supportedLanguageRoute = /^\/(?:(v1)\/)?(en|tr|al)(?:\/.*)?$/;
 const unsupportedLanguageRoute = /^\/([a-z]{2,3})(?:\/.*)?$/i;
+const unsupportedVersionBaseRoute = /^\/(v\d+)$/i;
+const unsupportedVersionRoute = /^\/(v\d+)\/([a-z]{2,3})(?:\/.*)?$/i;
 
 const port = Number(process.env.PORT || 3000);
 
@@ -29,6 +31,7 @@ const upload = multer({
 
 app.use(express.static(staticDir));
 app.use("/:lang(en|tr|al)", express.static(staticDir));
+app.use("/v1/:lang(en|tr|al)", express.static(staticDir));
 
 app.post("/api/photos/upload", upload.array("photos", maxFileCount), async (req, res) => {
   if (!isDropboxConfigured()) {
@@ -58,6 +61,24 @@ app.post("/api/photos/upload", upload.array("photos", maxFileCount), async (req,
 
 app.get(supportedLanguageRoute, (_req, res) => {
   res.sendFile(indexFile);
+});
+
+app.get(unsupportedVersionBaseRoute, (req, res) => {
+  const [, version] = req.path.match(unsupportedVersionBaseRoute) || [];
+  if (String(version).toLowerCase() === "v1") {
+    return res.redirect(302, "/v1/en");
+  }
+  return res.redirect(302, "/en");
+});
+
+app.get(unsupportedVersionRoute, (req, res) => {
+  const [, version, language] = req.path.match(unsupportedVersionRoute) || [];
+  if (String(version).toLowerCase() !== "v1") {
+    const safeLang = ["en", "tr", "al"].includes(String(language).toLowerCase()) ? String(language).toLowerCase() : "en";
+    return res.redirect(302, `/${safeLang}`);
+  }
+
+  return res.redirect(302, "/v1/en");
 });
 
 app.get(unsupportedLanguageRoute, (req, res, next) => {
