@@ -512,6 +512,7 @@ const sealStage = document.getElementById("sealStage");
 const revealStage = document.getElementById("revealStage");
 const sealButton = document.getElementById("sealButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
+const soundToggle = document.getElementById("soundToggle");
 let introBranch = document.querySelector(".intro-branch");
 const heroTitleEl = document.querySelector(".hero-content h1");
 const heroTextEl = document.querySelector(".hero-text");
@@ -703,6 +704,7 @@ function playIntroBranchExit() {
 
 function fadeInBackgroundMusic(targetVolume = 0.40, durationMs = 50000) {
   if (!backgroundMusic) return;
+  if (backgroundMusic.muted) return;
 
   window.clearInterval(fadeInBackgroundMusic.intervalId);
   backgroundMusic.volume = 0;
@@ -721,6 +723,14 @@ function fadeInBackgroundMusic(targetVolume = 0.40, durationMs = 50000) {
   }, 60);
 }
 
+function updateSoundToggleUi() {
+  if (!soundToggle || !backgroundMusic) return;
+  const isMuted = backgroundMusic.muted;
+  soundToggle.classList.toggle("is-muted", isMuted);
+  soundToggle.setAttribute("aria-label", isMuted ? "Turn on background music" : "Mute background music");
+  soundToggle.setAttribute("title", isMuted ? "Turn sound on" : "Turn sound off");
+}
+
 function startBackgroundMusic() {
   if (!backgroundMusic) return;
   if (!backgroundMusic.paused) return;
@@ -732,6 +742,17 @@ function startBackgroundMusic() {
     .catch(() => {
       // ignore autoplay/playback failures silently
     });
+}
+
+function toggleBackgroundMusic() {
+  if (!backgroundMusic) return;
+  backgroundMusic.muted = !backgroundMusic.muted;
+
+  if (!backgroundMusic.muted && backgroundMusic.paused) {
+    startBackgroundMusic();
+  }
+
+  updateSoundToggleUi();
 }
 
 function initIntroOverlay() {
@@ -897,6 +918,11 @@ if (langSelect) {
     rememberScrollPosition(nextLang);
     navigateToLanguage(nextLang);
   });
+}
+
+if (soundToggle) {
+  soundToggle.addEventListener("click", toggleBackgroundMusic);
+  updateSoundToggleUi();
 }
 
 if (menuToggle && nav) {
