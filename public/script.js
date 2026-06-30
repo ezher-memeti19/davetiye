@@ -186,7 +186,7 @@ const translations = {
     message: "Mesaj",
     message_placeholder: "Çift için bir notunuz var mı?",
     send_rsvp: "RSVP Gönder",
-    footer_text: "Varlığınız genç çift için bir bereket, Memeti ve Abdula aileleri için ise onur ve mutluluk olacaktır.",
+    footer_text: "Katılımınız genç çiftimiz için bereket, Memeti ve Abdula aileleri için ise onur ve sevinç kaynağı olacaktır.",
     copy_details_text: "Eda ve Ez'her Düğünü - 3 Ağustos 2026, 19:30, Kalkandelen",
     toast_copy_success: "Etkinlik bilgileri kopyalandı.",
     toast_copy_fail: "Bu tarayıcıda kopyalama başarısız.",
