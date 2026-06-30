@@ -37,16 +37,48 @@
     href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Great+Vibes&family=Manrope:wght@400;500;600;700&family=Ms+Madi&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script>
+    (function () {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+      const parts = path ? path.split("/") : [];
+      const langs = ["en", "tr", "al"];
+      const variants = ["v1", "v2"];
+      const suffix = `${window.location.search}${window.location.hash}`;
+      let target = null;
+
+      if (parts.length === 1 && variants.includes(parts[0])) {
+        target = `/${parts[0]}/en${suffix}`;
+      } else if (parts.length >= 2 && variants.includes(parts[0])) {
+        const tail = parts.length > 2 ? `/${parts.slice(2).join("/")}` : "";
+        if (!langs.includes(parts[1])) {
+          target = `/${parts[0]}/en${tail}${suffix}`;
+        }
+      } else if (parts.length >= 2 && langs.includes(parts[0]) && variants.includes(parts[1])) {
+        const tail = parts.length > 2 ? `/${parts.slice(2).join("/")}` : "";
+        target = `/${parts[1]}/${parts[0]}${tail}${suffix}`;
+      } else if (parts.length >= 2 && /^v\d+$/i.test(parts[0]) && !variants.includes(parts[0])) {
+        const fallbackLang = langs.includes(parts[1]) ? parts[1] : "en";
+        const tail = parts.length > 2 ? `/${parts.slice(2).join("/")}` : "";
+        target = `/${fallbackLang}${tail}${suffix}`;
+      } else if (parts.length >= 1 && /^[a-z]{2,3}$/i.test(parts[0]) && !langs.includes(parts[0])) {
+        target = `/en${suffix}`;
+      }
+
+      if (target && target !== `${window.location.pathname}${suffix}`) {
+        window.location.replace(target);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="/style.css" />
   <link rel="icon" href="/graph-img-v5.png">
   <link rel="apple-touch-icon" href="/graph-img-v5.png">
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-  <script src="/script.js" defer></script>
+  <script src="/script.js?v=routefix-20260630-2" defer></script>
 </head>
 
 <body class="intro-active">
   <audio id="backgroundMusic" preload="auto" loop aria-hidden="true">
-    <source src="/background.mp3" type="audio/mpeg" />
+    <source src="/background-v2.mp3" type="audio/mpeg" />
   </audio>
   <div class="intro-overlay" id="introOverlay" aria-hidden="true">
     <div class="seal-stage" id="sealStage">
