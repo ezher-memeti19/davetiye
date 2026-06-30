@@ -296,7 +296,7 @@ const translations = {
 };
 
 const SUPPORTED_LANGS = ["en", "tr", "al"];
-const SUPPORTED_VARIANTS = ["default", "v1"];
+const SUPPORTED_VARIANTS = ["default", "v1", "v2"];
 const HREFLANGS = {
   en: "en",
   tr: "tr",
@@ -320,7 +320,7 @@ function buildRoutePath({ lang, variant = "default", tail = [] }) {
   const normalizedLang = normalizeLanguage(lang) || "en";
   const normalizedVariant = normalizeVariant(variant) || "default";
   const normalizedTail = Array.isArray(tail) ? tail.filter(Boolean) : [];
-  const baseSegments = normalizedVariant === "v1" ? ["v1", normalizedLang] : [normalizedLang];
+  const baseSegments = normalizedVariant === "default" ? [normalizedLang] : [normalizedVariant, normalizedLang];
   return `/${[...baseSegments, ...normalizedTail].join("/")}`;
 }
 
@@ -334,24 +334,35 @@ function getRouteContext(pathname = window.location.pathname) {
 
   const directLang = normalizeLanguage(firstSegment);
   if (directLang) {
+    const trailingVariant = normalizeVariant(secondSegment);
+    if (trailingVariant && trailingVariant !== "default") {
+      return {
+        variant: trailingVariant,
+        lang: directLang,
+        tail: restSegments,
+        redirect: buildRoutePath({ variant: trailingVariant, lang: directLang, tail: restSegments })
+      };
+    }
+
     return { variant: "default", lang: directLang, tail: [secondSegment, ...restSegments].filter(Boolean), redirect: null };
   }
 
-  if (firstSegment === "v1") {
-    const versionedLang = normalizeLanguage(secondSegment);
-    if (versionedLang) {
-      return { variant: "v1", lang: versionedLang, tail: restSegments, redirect: null };
+  if (/^v\d+$/i.test(firstSegment)) {
+    const versionVariant = normalizeVariant(String(firstSegment).toLowerCase());
+    if (versionVariant) {
+      const versionedLang = normalizeLanguage(secondSegment);
+      if (versionedLang) {
+        return { variant: versionVariant, lang: versionedLang, tail: restSegments, redirect: null };
+      }
+
+      return {
+        variant: versionVariant,
+        lang: null,
+        tail: restSegments,
+        redirect: buildRoutePath({ variant: versionVariant, lang: "en", tail: restSegments })
+      };
     }
 
-    return {
-      variant: "v1",
-      lang: null,
-      tail: restSegments,
-      redirect: buildRoutePath({ variant: "v1", lang: "en", tail: restSegments })
-    };
-  }
-
-  if (/^v\d+$/i.test(firstSegment)) {
     const fallbackLang = normalizeLanguage(secondSegment) || "en";
     return {
       variant: "default",
@@ -513,6 +524,9 @@ const revealStage = document.getElementById("revealStage");
 const sealButton = document.getElementById("sealButton");
 const backgroundMusic = document.getElementById("backgroundMusic");
 const soundToggle = document.getElementById("soundToggle");
+const venueGridEl = document.querySelector(".venue-grid");
+const ajkaVenueCard = document.querySelector('[data-venue-card="ajka"]');
+const shazaVenueCard = document.querySelector('[data-venue-card="shaza"]');
 let introBranch = document.querySelector(".intro-branch");
 const heroTitleEl = document.querySelector(".hero-content h1");
 const heroTextEl = document.querySelector(".hero-text");
@@ -872,12 +886,53 @@ function downloadCalendarFile() {
   URL.revokeObjectURL(url);
 }
 
+function setVenueCardVisibility(card, isVisible) {
+  if (!card) return;
+  card.hidden = !isVisible;
+  card.setAttribute("aria-hidden", String(!isVisible));
+
+  if (!isVisible) {
+    card.setAttribute("inert", "");
+    return;
+  }
+
+  card.removeAttribute("inert");
+}
+
+function applyVenueVariant() {
+  const body = document.body;
+  const visibleCardsByVariant = {
+    default: { ajka: true, shaza: true },
+    v1: { ajka: false, shaza: true },
+    v2: { ajka: true, shaza: false }
+  };
+  const visibleCards = visibleCardsByVariant[currentVariant] || visibleCardsByVariant.default;
+  const ajkaHeading = ajkaVenueCard?.querySelector(".venue-top h4");
+  const shazaHeading = shazaVenueCard?.querySelector(".venue-top h4");
+
+  setVenueCardVisibility(ajkaVenueCard, visibleCards.ajka);
+  setVenueCardVisibility(shazaVenueCard, visibleCards.shaza);
+
+  if (ajkaHeading) {
+    ajkaHeading.hidden = currentVariant === "v2";
+  }
+
+  if (shazaHeading) {
+    shazaHeading.hidden = currentVariant === "v1";
+  }
+
+  const hasSingleVisibleVenue = Number(visibleCards.ajka) + Number(visibleCards.shaza) === 1;
+  body?.classList.toggle("variant-single-venue", hasSingleVisibleVenue);
+  venueGridEl?.classList.toggle("venue-grid-single", hasSingleVisibleVenue);
+}
+
 function applyLanguage(lang) {
   const dict = translations[lang] || translations.en;
   const body = document.body;
   document.documentElement.lang = HREFLANGS[lang] || "en";
   document.documentElement.dataset.variant = currentVariant;
   body?.classList.toggle("variant-v1", currentVariant === "v1");
+  body?.classList.toggle("variant-v2", currentVariant === "v2");
   document.title = `Eda & Ez'her | ${dict.hero_eyebrow}`;
 
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -905,6 +960,7 @@ function applyLanguage(lang) {
 
   currentLang = lang;
   localStorage.setItem("wedding_lang", lang);
+  applyVenueVariant();
   renderHeroTitle();
   renderHeroText(dict.hero_text);
   updateSeoLinks(lang);

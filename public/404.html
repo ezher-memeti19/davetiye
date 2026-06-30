@@ -4,10 +4,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=/en" />
   <title>Redirecting…</title>
   <script>
-    window.location.replace(`/en${window.location.search}${window.location.hash}`);
+    (function () {
+      const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+      const parts = path ? path.split("/") : [];
+      const langs = ["en", "tr", "al"];
+      const variants = ["v1", "v2"];
+      const suffix = `${window.location.search}${window.location.hash}`;
+      let target = `/en${suffix}`;
+
+      if (parts.length === 1 && variants.includes(parts[0])) {
+        target = `/${parts[0]}/en${suffix}`;
+      } else if (parts.length >= 2 && variants.includes(parts[0])) {
+        const tail = parts.length > 2 ? `/${parts.slice(2).join("/")}` : "";
+        const safeLang = langs.includes(parts[1]) ? parts[1] : "en";
+        target = `/${parts[0]}/${safeLang}${tail}${suffix}`;
+      } else if (parts.length >= 2 && langs.includes(parts[0]) && variants.includes(parts[1])) {
+        const tail = parts.length > 2 ? `/${parts.slice(2).join("/")}` : "";
+        target = `/${parts[1]}/${parts[0]}${tail}${suffix}`;
+      } else if (parts.length >= 1 && langs.includes(parts[0])) {
+        const tail = parts.length > 1 ? `/${parts.slice(1).join("/")}` : "";
+        target = `/${parts[0]}${tail}${suffix}`;
+      }
+
+      window.location.replace(target);
+    })();
   </script>
 </head>
 

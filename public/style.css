@@ -1937,17 +1937,24 @@ h1 {
   margin: 0 auto;
 }
 
-body.variant-v1 .venue-card[data-venue-card="ajka"] {
-  display: none;
-}
-
-body.variant-v1 .venue-grid {
+body.variant-single-venue .venue-grid,
+.venue-grid.venue-grid-single {
   grid-template-columns: minmax(320px, 372px);
   justify-content: center;
   max-width: 372px;
 }
 
+body.variant-v1 .venue-card[data-venue-card="ajka"],
+body.variant-v2 .venue-card[data-venue-card="shaza"],
+.venue-card[hidden] {
+  display: none !important;
+}
+
 body.variant-v1 .venue-card[data-venue-card="shaza"] .venue-top h4 {
+  display: none;
+}
+
+body.variant-v2 .venue-card[data-venue-card="ajka"] .venue-top h4 {
   display: none;
 }
 

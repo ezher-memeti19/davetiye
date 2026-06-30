@@ -1,4 +1,14 @@
 {
+  "redirects": [
+    { "source": "/v1", "destination": "/v1/en", "permanent": false },
+    { "source": "/v2", "destination": "/v2/en", "permanent": false },
+    { "source": "/en/v1", "destination": "/v1/en", "permanent": false },
+    { "source": "/tr/v1", "destination": "/v1/tr", "permanent": false },
+    { "source": "/al/v1", "destination": "/v1/al", "permanent": false },
+    { "source": "/en/v2", "destination": "/v2/en", "permanent": false },
+    { "source": "/tr/v2", "destination": "/v2/tr", "permanent": false },
+    { "source": "/al/v2", "destination": "/v2/al", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/v:version", "destination": "/index.html" },
     { "source": "/v:version/:lang", "destination": "/index.html" },
@@ -9,6 +19,12 @@
     { "source": "/v1/en/:path*", "destination": "/index.html" },
     { "source": "/v1/tr/:path*", "destination": "/index.html" },
     { "source": "/v1/al/:path*", "destination": "/index.html" },
+    { "source": "/v2/en", "destination": "/index.html" },
+    { "source": "/v2/tr", "destination": "/index.html" },
+    { "source": "/v2/al", "destination": "/index.html" },
+    { "source": "/v2/en/:path*", "destination": "/index.html" },
+    { "source": "/v2/tr/:path*", "destination": "/index.html" },
+    { "source": "/v2/al/:path*", "destination": "/index.html" },
     { "source": "/en", "destination": "/index.html" },
     { "source": "/tr", "destination": "/index.html" },
     { "source": "/al", "destination": "/index.html" },
