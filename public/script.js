@@ -511,6 +511,7 @@ const introOverlay = document.getElementById("introOverlay");
 const sealStage = document.getElementById("sealStage");
 const revealStage = document.getElementById("revealStage");
 const sealButton = document.getElementById("sealButton");
+const backgroundMusic = document.getElementById("backgroundMusic");
 let introBranch = document.querySelector(".intro-branch");
 const heroTitleEl = document.querySelector(".hero-content h1");
 const heroTextEl = document.querySelector(".hero-text");
@@ -700,6 +701,39 @@ function playIntroBranchExit() {
   introBranch.style.animation = "introBranchExit 1.25s cubic-bezier(0.22, 1, 0.36, 1) 0.05s forwards";
 }
 
+function fadeInBackgroundMusic(targetVolume = 0.40, durationMs = 50000) {
+  if (!backgroundMusic) return;
+
+  window.clearInterval(fadeInBackgroundMusic.intervalId);
+  backgroundMusic.volume = 0;
+
+  const startedAt = performance.now();
+  fadeInBackgroundMusic.intervalId = window.setInterval(() => {
+    const elapsed = performance.now() - startedAt;
+    const progress = Math.min(elapsed / durationMs, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    backgroundMusic.volume = targetVolume * easedProgress;
+
+    if (progress >= 1) {
+      window.clearInterval(fadeInBackgroundMusic.intervalId);
+      backgroundMusic.volume = targetVolume;
+    }
+  }, 60);
+}
+
+function startBackgroundMusic() {
+  if (!backgroundMusic) return;
+  if (!backgroundMusic.paused) return;
+  backgroundMusic.volume = 0;
+  backgroundMusic.play()
+    .then(() => {
+      fadeInBackgroundMusic();
+    })
+    .catch(() => {
+      // ignore autoplay/playback failures silently
+    });
+}
+
 function initIntroOverlay() {
   if (!introOverlay) return;
 
@@ -739,6 +773,7 @@ function initIntroOverlay() {
   const startReveal = () => {
     if (opened) return;
     opened = true;
+    startBackgroundMusic();
     playIntroBranchExit();
     document.body.classList.remove("intro-active");
     document.body.classList.add("intro-complete");
